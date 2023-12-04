@@ -1,0 +1,102 @@
+<include target="_header.html" />
+<!--@if($video!=false)-->
+<include cond="$video!=false" target="_peruse.html" />
+<!--@else-->
+<script type="text/javascript">
+    function showPopup(videoId) {
+        var youtube_popup = document.getElementById('youtube_popup');
+        var youtube_container = document.getElementById('youtube_popup_container');
+        var youtube_player = document.createElement("iframe");
+
+        youtube_player.id = "youtube_popup_player";
+        youtube_player.width = { $videoSize[width]};
+        youtube_player.height = { $videoSize[height]};
+        youtube_player.style.border = "0";
+        youtube_player.setAttribute("allowfullscreen", null);
+
+        youtube_player.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+        youtube_container.appendChild(youtube_player);
+        youtube_popup.style.display = "block";
+    }
+
+    function closePopup() {
+        var youtube_popup = document.getElementById('youtube_popup');
+        var youtube_container = document.getElementById('youtube_popup_container');
+
+        youtube_popup.style.display = "none";
+        youtube_container.innerHTML = null;
+    }
+</script>
+<!--@if(is_array($categoryName) && count($categoryName) > 1)-->
+<ul class='categoryTab'>
+    <!--@foreach($categoryName as $key => $val)-->
+    <li class="on" |cond="$category==$key"><a href="{getNotEncodedUrl('','mid',$mid,'page',$nowPage,'category',$key)}">
+            <!--@if(empty($val))-->{$lang->untitle} 
+            <!--@else-->{$val}
+            <!--@end-->
+        </a></li>
+    <!--@end-->
+</ul>
+<!--@end-->
+<!--LIST-->
+<table>
+    <!--
+	<thead>
+		<tr>
+			<th class="browse_thumbnail">{$lang->thumbnail}</th>
+			<th class="browse_title">{$lang->title}</th>
+			<th class="browse_channel">{$lang->channel}</th>
+			<th class="browse_date">{$lang->date}</th>
+		</tr>
+	</thead>
+	-->
+    <tbody>
+        <!--@foreach($videos as $key=>$val)-->
+        <!--@if(strpos($val['title'], 'Private') !== false)-->
+        <!--@else-->
+        <!--@if(is_numeric($key))-->
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 youtube_height" style="padding:0 10px;">
+            <a href="{$val[url]}" class="tv_thumb">
+                <img src="{$val[snippet][thumbnails][high][url]}" style="width:100%; margin-bottom:10px;" />
+            </a>
+            <div>
+                <a href="{$val[url]}" class="youtube_font">{$val[snippet][title]}</a>
+                <p class="tv_date">방송일 : {date("Y-m-d", $val[snippet][kst])}</p>
+            </div>
+        </div>
+        <!--
+                <tr>
+                    <td class="browse_thumbnail"><a href="javascript:showPopup('{$val[snippet][resourceId][videoId]}');"><img src="{$val[snippet][thumbnails][high][url]}" /></a></td>
+                    <td class="browse_title"><a href="{$val[url]}">{$val[snippet][title]}</a></td>
+                    <td class="browse_channel"><a href="{$val[channelUrl]}" target="_blank">{$val[snippet][channelTitle]}</a></td>
+                    <td class="browse_date">{date("Y.m.d", $val[snippet][kst])}</td>
+                </tr>
+                -->
+        <!--@end-->
+        <!--@end-->
+        <!--@end-->
+    </tbody>
+</table>
+<!--/LIST-->
+<!--BROWSE PAGE-->
+<div class="pages">
+    <a href="{getNotEncodedUrl('','mid',$mid)}"><i class="xi-angle-left"></i>&nbsp;이전</a>
+    <block loop="$i=$startPage;$i<=$endPage;$i++">
+        <strong cond="$nowPage==$i">{$i}</strong>
+        <a cond="$nowPage!=$i" href="{getNotEncodedUrl('','mid',$mid,'page',$i,'category',$category)}">{$i}</a>
+    </block>
+    <a href="{getNotEncodedUrl('','mid',$mid,'page',$totalPages,'category',$category)}">다음&nbsp;<i
+            class="xi-angle-right"></i></a>
+</div>
+<!--/BROWSE PAGE-->
+<!--SEARCH-->
+<!--/SEARCH-->
+<!--POPUP-->
+<div class="youtube_popup" id='youtube_popup' style='display: none;' onclick="closePopup();">
+    <i class='xi-close' style='font-size: 2em; position: absolute; top: 2em; right: 2em;'></i>
+    <div class="centered" id="youtube_popup_container">
+    </div>
+</div>
+<!--@end-->
+<!--/POPUP-->
+<include target="_footer.html" />

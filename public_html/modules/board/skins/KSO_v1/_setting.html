@@ -1,0 +1,57 @@
+<load target="css/board.css" />
+<load target="css/font-awesome.min.css" />
+<load target="js/board.js" />
+<load target="js/masonry.pkgd.min.js" />
+<load target="js/jquery.datetimepicker.full.min.js" />
+<load target="css/jquery.datetimepicker.css" />
+
+<!--@if($order_type == "desc")-->{@ $order_type = "asc"; }<!--@else-->{@ $order_type = "desc"; }<!--@end-->
+<!--@if(!$module_info->duration_new = (int)$module_info->duration_new)-->{@ $module_info->duration_new = 12 }<!--@end-->
+<!--@if(!$module_info->subject_cut_size = (int)$module_info->subject_cut_size)-->{@ $module_info->subject_cut_size= 80 }<!--@end-->
+<!--@if(!$module_info->content_cut_size = (int)$module_info->content_cut_size)-->{@ $module_info->content_cut_size= 320 }<!--@end-->
+<!--@if(!$module_info->thumnailnum)-->{@ $module_info->thumnailnum = three }<!--@end-->
+<!--@if(!$module_info->thumbnail_type)-->{@ $module_info->thumbnail_type = 'crop'; }<!--@end-->
+<!--@if(!$module_info->search_view)-->{@ $module_info->search_view = 'B'; }<!--@end-->
+
+<!--@if(!$module_info->thumbnail_width)-->
+{@ $module_info->thumbnail_width = 555; }
+<!--@end-->
+<!--@if(!$module_info->thumbnail_height)-->
+{@ $module_info->thumbnail_height = 361; }
+<!--@end-->
+
+<!--@if($listStyle=='gallery')-->
+    {@ $module_info->default_style = 'gallery'}
+<!--@elseif($listStyle=='webzine')-->
+    {@ $module_info->default_style = 'webzine'}
+<!--@elseif($listStyle=='list')-->
+    {@ $module_info->default_style = 'list'}
+<!--@elseif($listStyle=='card')-->
+    {@ $module_info->default_style = 'card'}	
+<!--@elseif($listStyle=='video')-->
+    {@ $module_info->default_style = 'video'}	
+<!--@elseif($listStyle=='videolist')-->
+    {@ $module_info->default_style = 'videolist'}
+<!--@elseif($listStyle=='blog')-->
+	{@ $module_info->default_style = 'blog'}
+<!--@elseif(!in_array($module_info->default_style,array('list','webzine','gallery','card','blog','video','videolist')))-->
+    {@ $module_info->default_style = 'list'}
+<!--@end-->
+
+{@ $cate_list = array(); $current_key = null; }
+<!--@foreach($category_list as $key=>$val)-->
+	<!--@if(!$val->depth)-->
+		{@
+			$cate_list[$key] = $val;
+			$cate_list[$key]->children = array();
+			$current_key = $key;
+		}
+	<!--@elseif($current_key)-->
+		{@ $cate_list[$current_key]->children[] = $val }
+	<!--@end-->
+<!--@end-->
+{@
+	$mi = $module_info;
+	if($_COOKIE['bd_editor']) $mi->cmt_wrt = $_COOKIE['bd_editor'];	
+	if(!$mi->cmt_wrt) $mi->cmt_wrt = 'simple';
+}

@@ -1,0 +1,195 @@
+<form action="./" method="get" class="boardListForm">
+    <fieldset>
+<table cond="$document_list || $notice_list" class="table table-hover">
+    <thead>
+        <tr>
+            <block loop="$list_config=>$key,$val">
+            <th cond="$val->type=='no' && $val->idx==-1" class="radio_num hidden-sm hidden-xs">번호</th>
+            <th cond="$val->type=='regdate' && $val->idx==-1" class="radio_days hidden-sm hidden-xs">등록일자</th>
+            <th cond="$val->type=='title' && $val->idx==-1" class="radio_program">제목</th>
+            <th cond="$val->type=='user_name' && $val->idx==-1" class="radio_write">작성자</th>
+            <th cond="$val->type=='readed_count' && $val->idx==-1" class="radio_write">조회수</th>
+            <th scope="col" cond="$val->idx!=-1"><span><a href="{getUrl('sort_index', $val->eid, 'order_type', $order_type)}" rel="nofollow">{$val->name}</a></span></th>
+            </block>
+            <th cond="$grant->manager" class="radio_select">선택</th>
+        </tr>
+    </thead>
+
+    <!--@if($mid == 'sub03_05')-->
+    <block cond="!$document_srl" > 
+        {@
+            $new_document_srl = reset($document_list)->document_srl;
+            $oDocumentModel = &getModel('document');
+            $oDocument = $oDocumentModel->getDocument($new_document_srl);
+            Context::set('document_srl',$new_document_srl);
+        }
+    
+        <include target="./view_document.html" />
+    
+        <br />
+        <br />
+        <br />
+    
+    
+    </block>
+    <!--@end-->
+
+	<tbody class="custom_tbody">
+		<!--// Notice -->
+		<tr loop="$notice_list=>$no,$document" class="<!--@if($document->getExtraEidValue('video'))-->info<!--@else-->active<!--@end-->">
+			<!-- {@ $resrve_date = $document->getExtraEidValue('reserve_date');} -->
+			<block loop="$list_config=>$key,$val">
+			<td cond="$val->type=='no' && $val->idx==-1" class="hidden-xs width70 text-center rbColor ">
+				<block cond="$document_srl==$document->document_srl">&raquo;</block><strong cond="$document_srl!=$document->document_srl">{$lang->notice}</strong>
+			</td>
+			<block cond="$val->type=='title' && $val->idx==-1">
+			<td>
+				<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', 'list', 'cpage','')}" class="title custom_title">
+                    <span class="board_tit">{$document->getTitle($module_info->subject_cut_size)}</span>
+				</a> 		
+				<!--@if($document->getCommentCount())-->
+				 <small><a href="{getUrl('document_srl', $document->document_srl)}#comment">({$document->getCommentCount()})</a></small>
+				<!--@end-->
+				<!--@if($document->getTrackbackCount())-->
+				 <small><a href="{getUrl('document_srl', $document->document_srl)}#trackback">({$document->getTrackbackCount()})</a></small>
+				<!--@end-->
+				<block cond="$document->hasUploadedFiles()=='Y' && $module_info->icon_file=='Y'"><span class="label label-info"><i class="fa fa-file-text-o"></i></span></block>
+				<block cond="$document->variables[status]=='SECRET'"><span class="label label-warning"><i class="fa fa-unlock-alt"></i></span></block>
+			</td>
+			</block>
+			<td cond="$val->type=='nick_name' && $val->idx==-1" class="hidden-xs tableuser"><a href="#popup_menu_area" class="member_{$document->get('member_srl')} nocolorlist" onclick="return false" title="{$document->getNickName()}">{$document->getNickName()}</a></td>
+			<td cond="$val->type=='user_id' && $val->idx==-1" class="hidden-xs tableuser">{$document->getUserID()}</td>
+			<td cond="$val->type=='user_name' && $val->idx==-1" class="tableuser">{$document->getUserName()}</td>
+            <td cond="$val->type=='regdate' && $val->idx==-1"  class="tabledate custom_date hidden-xs hidden-sm">
+				<!-- <div class="custom_day">{$resrve_date ? date('d', strtotime($resrve_date)) : $document->getRegdate('d')}</div> -->
+				<div class="custom_ym hidden-sm hidden-xs">{$resrve_date ? date('y.m.d', strtotime($resrve_date)) : $document->getRegdate('Y.m.d')}</div>
+			</td>
+			<td cond="$val->type=='last_update' && $val->idx==-1" class="hidden-xs tabledate">{zdate($document->get('last_update'),'Y.m.d')}</td>
+			<td cond="$val->type=='last_post' && $val->idx==-1" class="hidden-xs tabledate">
+				<block cond="(int)($document->get('comment_count'))>0">
+					<a href="{getUrl('document_srl',$document->document_srl)}#{$document->document_srl}_comment" title="{getTimeGap($document->get('last_update'), "H:i")}">{zdate($document->get('last_update'),'Y.m.d')}<small cond="$document->getLastUpdater()">(by {$document->getLastUpdater()})</small></a>
+				</block>
+				<block cond="(int)($document->get('comment_count'))==0">&nbsp;</block>
+			</td>
+			<td cond="$val->type=='readed_count' && $val->idx==-1" class="hidden-xs width70 text-center">{$document->get('readed_count')>0?$document->get('readed_count'):'0'}</td>
+			<td cond="$val->type=='voted_count' && $val->idx==-1" class="hidden-xs width70 text-center">{$document->get('voted_count')!=0?$document->get('voted_count'):'0'}</td>
+			<td cond="$val->type=='blamed_count' && $val->idx==-1" class="hidden-xs width70 text-center">{$document->get('blamed_count')!=0?$document->get('blamed_count'):'0'}</td>
+			<!--@if($val->eid=='video')-->	
+			<!--@else-->
+			<td cond="$val->idx!=-1" class="width70 hidden-xs ">
+				<!--@if($val->eid=='rating')-->
+					<span title="{$document->getExtraValueHTML($val->idx)}{$lang->score}"><span style="width:{$document->getExtraValueHTML($val->idx)*10}%">{$document->getExtraValueHTML($val->idx)}</span></span>
+				<!--@else-->
+				{$document->getExtraValueHTML($val->idx)}
+				<!--@end-->
+			</td>
+			<!--@end-->
+			<!--@if($val->eid=='video')-->
+			<td cond="$val->idx!=-1" class="width50 hidden-xs">
+					<!--@if($document->getExtraValueHTML($val->idx))-->
+					<a href="#" onclick="window.open('{getUrl('document_srl',$document->document_srl,'listStyle','video','page','')}','video','width=<!--@if($module_info->display_videoplaywidth)-->{$module_info->display_videoplaywidth}<!--@else-->800<!--@end-->,height=<!--@if($module_info->display_videoplayheight)-->{$module_info->display_videoplayheight}<!--@else-->600<!--@end-->,resizable=yes');return false">보기</a>
+					<!--@end-->
+			</td>		
+			<!--@end-->
+			</block>
+			<td cond="$grant->manager" class="width30">
+                <input class="checkbox radio_check" type="checkbox" name="cart" value="{$document->document_srl}" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" /></td>
+		</tr>
+
+		<!--// Normal -->
+		<tr loop="$document_list=>$no,$document" class="active"|cond="$document_srl==$document->document_srl">
+			{@ $resrve_date = $document->getExtraEidValue('reserve_date');}
+			<block loop="$list_config=>$key,$val">
+			<td cond="$val->type=='no' && $val->idx==-1" class="hidden-xs width70 text-center">
+                <!--@if((int)($document->getRegdate('YmdHis')>date("YmdHis", time()-$module_info->duration_new*60*60)))-->
+				<small>
+                    <span class="label label-primary">
+                        <img src="img/icon_bell.png" alt="icon_bell">
+                    </span>
+                </small>
+				<!--@else-->
+                <block cond="$document_srl==$document->document_srl"><i class="bi bi-check2"></i></block>
+				<block cond="$document_srl!=$document->document_srl">{$no}</block>
+				<!--@end-->
+			</td>
+			<block cond="$val->type=='title' && $val->idx==-1">
+			<td>
+				<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', 'list', 'cpage','')}" class="title custom_title">
+                    <span class="board_tit">{$document->getTitle($module_info->subject_cut_size)}</span>
+				</a>
+				<!--@if($document->getCommentCount())-->
+				<small><a href="{getUrl('document_srl', $document->document_srl)}#comment">({$document->getCommentCount()})</a></small>
+				<!--@end-->
+				<!--@if($document->getTrackbackCount())-->
+				<small><a href="{getUrl('document_srl', $document->document_srl)}#trackback">({$document->getTrackbackCount()})</a></small>
+				<!--@end-->
+				<block cond="$document->hasUploadedFiles()=='Y' && $module_info->icon_file=='Y'"><small><span class="label label-info"><i class="fa fa-file-text-o"></i></span></small></block>
+				<block cond="$document->variables[status]=='SECRET'"><small><span class="label label-warning"><i class="fa fa-unlock-alt"></i></span></small></block>
+			</td>
+			</block>
+			<td cond="$val->type=='nick_name' && $val->idx==-1" class="hidden-xs nocolorlist tableuser"><a href="#popup_menu_area" class="member_{$document->get('member_srl')}" onclick="return false" title="{$document->getNickName()}">{$document->getNickName()}</a></td>
+			<td cond="$val->type=='user_id' && $val->idx==-1" class="hidden-xs tableuser">{$document->getUserID()}</td>
+			<td cond="$val->type=='user_name' && $val->idx==-1" class="tableuser">{$document->getUserName()}</td>
+			<td cond="$val->type=='regdate' && $val->idx==-1"  class="tabledate custom_date hidden-sm hidden-xs" title="{getTimeGap($document->get('regdate'), "H:i")}">
+				<div class="custom_ym">{$resrve_date ? date('Y.m.d', strtotime($resrve_date)) : $document->getRegdate('Y.m.d')}</div>
+			</td>
+			<td cond="$val->type=='last_update' && $val->idx==-1" class="hidden-xs tabledate">{zdate($document->get('last_update'),'Y.m.d')}</td>
+			<td cond="$val->type=='last_post' && $val->idx==-1" class="hidden-xs tabledate">
+				<block cond="(int)($document->get('comment_count'))>0">
+					<a href="{getUrl('document_srl',$document->document_srl)}#{$document->document_srl}_comment" title="{getTimeGap($document->get('last_update'), "H:i")}">{zdate($document->get('last_update'),'Y.m.d')}<br/><small cond="$document->getLastUpdater()">(by {$document->getLastUpdater()})</small></a>
+				</block>
+				<block cond="(int)($document->get('comment_count'))==0">&nbsp;</block>
+			</td>
+			<td cond="$val->type=='readed_count' && $val->idx==-1" class="hidden-xs width70 text-center">{$document->get('readed_count')>0?$document->get('readed_count'):'0'}</td>
+			<td cond="$val->type=='voted_count' && $val->idx==-1" class="hidden-xs width70 text-center">{$document->get('voted_count')!=0?$document->get('voted_count'):'0'}</td>
+			<td cond="$val->type=='blamed_count' && $val->idx==-1" class="hidden-xs width70 text-center">{$document->get('blamed_count')!=0?$document->get('blamed_count'):'0'}</td>
+			<!--@if($val->eid=='video')-->
+			<!--@else-->
+			<td cond="$val->idx!=-1" class="width70 hidden-xs ">
+				<!--@if($val->eid=='rating')-->
+					<span title="{$document->getExtraValueHTML($val->idx)}{$lang->score}"><span style="width:{$document->getExtraValueHTML($val->idx)*10}%">{$document->getExtraValueHTML($val->idx)}</span></span>
+				<!--@else-->
+				{$document->getExtraValueHTML($val->idx)}
+				<!--@end-->
+			</td>
+			<!--@end-->
+			<!--@if($val->eid=='video')-->
+			<td cond="$val->idx!=-1" class="width50 hidden-xs ">
+					<!--@if($document->getExtraValueHTML($val->idx))-->
+					<a href="#" onclick="window.open('{getUrl('document_srl',$document->document_srl,'listStyle','video','page','')}','video','width=<!--@if($module_info->display_videoplaywidth)-->{$module_info->display_videoplaywidth}<!--@else-->800<!--@end-->,height=<!--@if($module_info->display_videoplayheight)-->{$module_info->display_videoplayheight}<!--@else-->600<!--@end-->,resizable=yes');return false">보기</a>
+					<!--@end-->
+			</td>		
+			<!--@end-->
+			</block>
+			<td cond="$grant->manager" class="width30">
+                <input class="checkbox radio_check" type="checkbox" name="cart" value="{$document->document_srl}" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" /></td>
+		</tr>
+	</tbody>
+</table>
+
+</fieldset>
+</form>
+<style>
+	.radio_btnset{display:flex; justify-content:center; align-items:center;}
+	.radio_btnset > li{border:1px solid #e5e5e5; width:45px; height:45px;   border-radius: 100%; margin:0 5px;}
+    .radio_btnset > li > a {overflow: hidden;}
+	.radio_btnset > li > a,
+	.radio_btnset > li > button{color:#0c599e; font-size:18px; display:flex; justify-content:center; align-items:center; width:100%; height:100%;  transition:all .2s; border:0; overflow: hidden; border-radius: 100%;}
+	.radio_btnset > li > a:hover,
+	.radio_btnset > li > button:hover{color:#fff!important;; background-color:#0c599e;}
+
+	@media (max-width: 991px) {
+		.td_radio_btnset{width:45px;}
+
+		/* .radio_btnset_li{display:none;} */
+		.radio_btnset > li:first-child{border-right:1px solid #e5e5e5;}
+
+        .radio_program {width: 60%;}
+        .radio_call {width: 40%;}
+        .radio_call p {font-size: 13px;}
+        .custom_ym {text-align: center; font-weight: 400;  margin-bottom: 5px;}
+        .radio_btnset {margin: auto;}
+        .radio_btnset > li {width: 30px; height: 30px; margin: 0 1px;}
+        .radio_btnset i {font-size: 14px;}
+	}
+</style>

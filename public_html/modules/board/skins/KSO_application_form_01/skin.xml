@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+	<title xml:lang="ko">KSO_application_form_01</title>
+	<description xml:lang="ko">ahrim님의 rest board를 기반으로 하여 제작한 게시판 스킨입니다.</description>
+	<version>1.0.1</version>
+	<date>2014-03-05</date>
+	<author email_address="ksjade@ksodeisgn.com" link="http://ksodesign.com">
+		<name xml:lang="ko">ahrim / Remake. KSJade</name>
+	</author>
+	<license>GPL v2 or later</license>
+<extra_vars>
+	<group>
+	<title xml:lang="ko">◈ 기본 설정</title>
+		<var name="default_style" type="radio" default="list">
+			<title xml:lang="ko">◈ 게시판 스타일</title>
+			<title xml:lang="en">Board Style</title>
+			<description xml:lang="ko">
+				목록형, 웹진형, 갤러리형 등 스타일을 지정할 수 있습니다.
+			</description>
+			<options value="list">
+				<title xml:lang="ko">목록(기본)</title>
+				<title xml:lang="en">list</title>
+			</options>
+			<options value="webzine">
+				<title xml:lang="ko">웹진 가로형</title>
+				<title xml:lang="en">webzine</title>
+			</options>
+			<options value="card">
+				<title xml:lang="ko">웹진 세로형</title>
+				<title xml:lang="en">card</title>
+			</options>		
+			<options value="gallery">
+				<title xml:lang="ko">갤러리(섬네일)</title>
+				<title xml:lang="en">gallery</title>
+			</options>
+			<options value="blog">
+				<title xml:lang="ko">블로그</title>
+				<title xml:lang="en">blog</title>
+			</options>				
+		</var>
+		<var name="title" type="text">
+			<title xml:lang="ko">◈ 게시판 제목</title>
+			<title xml:lang="en">Title of Board</title>
+			<description xml:lang="ko">게시판의 제목을 적어주세요.</description>
+			<description xml:lang="en">Plase input the title of board.</description>
+		</var>
+		<var name="sub_title" type="textarea">
+			<title xml:lang="ko">ㄴ 부제목</title>
+			<title xml:lang="en">Subtitle of Board</title>
+			<description xml:lang="ko">게시판 제목 옆에 나타날 부제목을 적어주세요.</description>
+			<description xml:lang="en">Please input the subtitle of board which will be displayed beside of board title.</description>
+		</var>
+		<var name="subject_cut_size" type="text">
+			<title xml:lang="ko">◎ 제목 글자수</title>
+			<title xml:lang="en">Length of Subject</title>
+			<description xml:lang="ko">제목 글자수를 지정할 수 있습니다. (0또는 비워주시면 자르지 않습니다)</description>
+			<description xml:lang="en">You may set length of title. (0 or blank value will not restrict the length)</description>
+		</var>
+		<var name="content_cut_size" type="text">
+			<title xml:lang="ko">◎ 내용 글자수</title>
+			<title xml:lang="en">Length of Content</title>
+			<description xml:lang="ko">내용 글자수를 지정할 수 있습니다. (기본 240, 100 = 약 45자)</description>
+			<description xml:lang="en">Length of Content can be assigned. (default 240)</description>
+		</var>	
+	</group>
+	<group>
+	<title xml:lang="ko">◈ 출력 설정</title>
+		<var name="display_categoryset_button" type="radio" default="pills">
+			<title xml:lang="ko">◈ 카테고리 스타일</title>
+			<title xml:lang="en">Display Setup</title>
+			<description xml:lang="ko">카드형(위치를 설정 옆으로)의 경우 게시판형태변경버튼 출력안함시 보이지 않습니다.</description>
+			<options value="pills">
+				<title xml:lang="ko">버튼형(기본)</title>
+				<title xml:lang="en">display</title>
+			</options>		
+			<options value="dropdown">
+				<title xml:lang="ko">드롭다운형</title>
+				<title xml:lang="en">display</title>
+			</options>			
+			<options value="nonav">
+				<title xml:lang="ko">출력하지 않음</title>
+				<title xml:lang="en">not display</title>
+			</options>
+		</var>	
+		<var name="display_photogallery" type="radio" default="N">
+			<title xml:lang="ko">◈ 본문내 자동 갤러리</title>
+			<description xml:lang="ko">적용 시 첨부된 이미지 파일이 자동으로 갤러리 스타일이 적용됩니다.</description>
+			<options value="N">
+				<title xml:lang="ko">적용안함(기본)</title>
+			</options>
+			<options value="Y">
+				<title xml:lang="ko">적용</title>
+			</options>					
+		</var>	
+		<var name="display_photogalleryheight" type="text">
+			<title xml:lang="ko">ㄴ 본문 갤러리 높이</title>
+			<description xml:lang="ko">비워두시면 이미지 크기에 따라 변합니다.</description>
+		</var>			
+		<var name="display_setup_button" type="radio" default="N">
+			<title xml:lang="ko">◎ 설정 버튼</title>
+			<title xml:lang="en">Display Setup</title>
+			<options value="N">
+				<title xml:lang="ko">출력안함(기본)</title>
+				<title xml:lang="en">not display</title>
+			</options>
+			<options value="Y">
+				<title xml:lang="ko">출력</title>
+				<title xml:lang="en">display</title>
+			</options>
+		</var>
+		<var name="display_listset_button" type="radio" default="N">
+			<title xml:lang="ko">◎ 스타일 버튼</title>
+			<title xml:lang="en">Display Setup</title>
+			<options value="N">
+				<title xml:lang="ko">출력안함(기본)</title>
+				<title xml:lang="en">not display</title>
+			</options>
+			<options value="Y">
+				<title xml:lang="ko">출력</title>
+				<title xml:lang="en">display</title>
+			</options>
+		</var>		
+		<var name="display_categoryset_badge" type="radio" default="N">
+			<title xml:lang="ko">분류에 글 수 표시</title>
+			<options value="N">
+				<title xml:lang="ko">출력안함(기본)</title>
+				<title xml:lang="en">not display</title>
+			</options>
+			<options value="Y">
+				<title xml:lang="ko">출력</title>
+				<title xml:lang="en">display</title>
+			</options>
+		</var>			
+		<var name="uploadFile" type="radio" default="N">
+			<title xml:lang="ko">첨부파일 버튼</title>
+			<options value="N">
+				<title xml:lang="ko">출력안함(기본)</title>
+				<title xml:lang="en">not display</title>
+			</options>
+			<options value="Y">
+				<title xml:lang="ko">출력</title>
+				<title xml:lang="en">display</title>
+			</options>
+		</var>	
+		<var name="display_viewdocumentlist" type="radio" default="Y">
+			<title xml:lang="ko">본문에 목록 출력</title>
+			<options value="Y">
+				<title xml:lang="ko">출력(기본)</title>
+				<title xml:lang="en">display</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">출력안함</title>
+				<title xml:lang="en">not display</title>
+			</options>
+		</var>	
+		<var name="display_commentwrite" type="radio" default="Y">
+			<title xml:lang="ko">본문에 댓글 폼</title>
+			<options value="Y">
+				<title xml:lang="ko">출력(기본)</title>
+				<title xml:lang="en">display</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">출력하지 않음</title>
+				<title xml:lang="en">not display</title>
+			</options>
+		</var>
+		<var name="cmt_wrt" type="radio" default="simple">
+			<title xml:lang="ko">댓글 에디터</title>
+			<options value="simple">
+				<title xml:lang="ko">심플 폼(기본)</title>
+			</options>
+			<options value="editor">
+				<title xml:lang="ko">에디터</title>
+			</options>
+		</var>	
+		<var name="cmt_wrt_position" type="radio" default="">
+			<title xml:lang="ko">댓글 에디터 위치</title>
+			<options value="">
+				<title xml:lang="ko">댓글 아래(기본)</title>
+			</options>
+			<options value="cmt_wrt_btm">
+				<title xml:lang="ko">댓글 위</title>
+			</options>
+		</var>		
+		<var name="search_view" type="radio" default="B">
+			<title xml:lang="ko">검색 바 위치</title>
+			<options value="B">
+				<title xml:lang="ko">하단 좌측(기본)</title>
+			</options>
+			<options value="T">
+				<title xml:lang="ko">상단 우측</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">출력 안함</title>
+			</options>
+		</var>		
+		<var name="display_sign" type="select">
+			<title xml:lang="ko">서명 표시</title>
+			<title xml:lang="en">서명 표시</title>
+			<description xml:lang="ko">글내용 사용자의 서명과 프로필 이미지를 표시하거나 숨길 수 있습니다. 프로필 이미지의 가로, 세로 길이는 회원 설정에서 설정한 프로필 이미지의 가로 세로 제한 길이입니다.</description>
+			<description xml:lang="en">글내용 사용자의 서명과 프로필 이미지를 표시하거나 숨길 수 있습니다.</description>
+			<options value="N">
+				<title xml:lang="ko">출력안함</title>
+				<title xml:lang="en">not display</title>
+			</options>
+			<options value="Y">
+				<title xml:lang="ko">출력</title>
+				<title xml:lang="en">display</title>
+			</options>
+		</var>
+		<var name="duration_new" type="text" default="24">
+			<title xml:lang="ko">new표시 시간 (hours)</title>
+			<title xml:lang="en">Duration of indication for new item</title>
+			<description xml:lang="ko">새로 등록된 게시물의 new 표시시간을 정할 수 있습니다. </description>
+			<description xml:lang="en">You may set the duration of indication for fresh item. </description>
+		</var>	
+	</group>
+	<group>
+	<title xml:lang="ko">◈ 웹진형/갤러리 설정</title>
+		<var name="display_thumbnailnum" type="radio" default="three">
+			<title xml:lang="ko">섬네일 가로 수 * 도움말 확인</title>
+			<description xml:lang="ko">웹진 세로형, 갤러리만 해당. 사이즈는 자동으로 맞춰집니다. (모바일은 두 개로 고정)</description>	
+			<options value="six">
+				<title xml:lang="ko">6개</title>
+			</options>	
+			<options value="four">
+				<title xml:lang="ko">4개</title>
+			</options>		
+			<options value="three">
+				<title xml:lang="ko">3개 (기본)</title>
+			</options>			
+			<options value="two">
+				<title xml:lang="ko">2개</title>
+			</options>		
+			<options value="one">
+				<title xml:lang="ko">1개</title>
+			</options>		
+		</var>	
+		<var name="thumbnail_type" type="select">
+			<title xml:lang="ko">썸네일 생성 방법</title>
+			<title xml:lang="en">Type of Thumbnail</title>
+			<description xml:lang="ko">썸네일 생성 방법을 선택할 수 있습니다.</description>
+			<description xml:lang="en">Choose the type to create the thumnail.</description>
+			<options value="crop">
+				<title xml:lang="ko">꽉 채우기</title>
+				<title xml:lang="en">crop</title>
+			</options>
+			<options value="ratio">
+				<title xml:lang="ko">비율 맞추기</title>
+				<title xml:lang="en">ratio</title>
+			</options>
+		</var>
+		<var name="thumbnail_width" type="text">
+			<title xml:lang="ko">섬네일 가로</title>
+			<description xml:lang="ko">섬네일 가로 사이즈 입력. 웹진 세로, 갤러리는 섬네일 영역 사이즈 확인 후 입력</description>
+		</var>
+		<var name="thumbnail_height" type="text">
+			<title xml:lang="ko">섬네일 세로</title>
+			<description xml:lang="ko">섬네일 세로 사이즈 입력. 웹진 세로, 갤러리는 섬네일 영역 사이즈 확인 후 입력</description>
+		</var>
+		<var name="display_bgStyle" type="radio" default="N">
+			<title xml:lang="ko">웹진 세로형 스타일</title>
+			<options value="N">
+				<title xml:lang="ko">테두리 라인 (기본)</title>
+			</options>
+			<options value="Y">
+				<title xml:lang="ko">배경 컬러</title>
+			</options>			
+		</var>
+		<var name="display_thumbnailborder" type="radio" default="Y">
+			<title xml:lang="ko">갤러리 테두리 적용</title>
+			<options value="N">
+				<title xml:lang="ko">적용안함(기본)</title>
+			</options>
+			<options value="Y">
+				<title xml:lang="ko">적용</title>
+			</options>			
+		</var>			
+		<var name="display_thumbnailcover" type="radio" default="Y">
+			<title xml:lang="ko">갤러리 출력정보</title>
+			<description xml:lang="ko">섬네일 마우스 오버 시 출력되는 정보 선택</description>
+			<options value="Y">
+				<title xml:lang="ko">제목+분류+날짜</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">제목+요약</title>
+			</options>			
+		</var>		
+	</group>
+
+	<group>
+	<title xml:lang="ko">◈ 미디어 설정 - 사용자정의(확장변수) video 생성 필수</title>
+		<var name="display_videoplaydoc" type="radio" default="Y">
+			<title xml:lang="ko">본문 영상 출력</title>
+			<options value="Y">
+				<title xml:lang="ko">출력(기본)</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">출력안함</title>
+			</options>					
+		</var>		
+		<var name="display_videoplaydocname" type="radio" default="Y">
+			<title xml:lang="ko">본문 영상 주소</title>
+			<options value="Y">
+				<title xml:lang="ko">출력(기본)</title>
+			</options>
+			<options value="N">
+				<title xml:lang="ko">출력안함</title>
+			</options>					
+		</var>			
+	</group>
+</extra_vars>
+</skin>
+

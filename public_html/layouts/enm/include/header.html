@@ -1,0 +1,148 @@
+<header class="fac between">
+    <a href="/">
+        <img class="logo" src="../img/main/header logo.png" alt="로고"/>
+    </a>
+    <div class="gnb fac">
+        <ul class="menu fac between">
+            <li class="gnb-list" loop="$main_menu->list=>$key1,$val1" cond="$val1['link']">
+                <a class="first-menu bold2" href="{$val1['href']}" |cond="$val1['open_window']=='Y'">{$val1['text']}</a>
+                <ul cond="$val1['list']" class="second-menu">
+                    <li loop="$val1['list']=>$key2,$val2"  cond="$val2['link']">
+                        <a href="{$val2['href']}" |cond="$val2['open_window']=='Y'">{$val2['text']}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="btn-sitemap cursor-p">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+<!-- sitemap -->
+<section class="sitemap bg-blue">
+    <!-- pc -->
+    <div class="wrap hidden-sm hidden-xs">
+        <ul class="dp-sp-between menu-wrapper wow fadeIn" style="animation-delay:0.5s;">
+            <li class="menu-wrap wow fadeIn anima" loop="$main_menu->list=>$key1,$val1" cond="$val1['link']">
+                <a class="main-menu bold2" href="{$val1['href']}" |cond="$val1['open_window']=='Y'">{$val1['text']}</a>
+                <ul cond="$val1['list']">
+                    <li  loop="$val1['list']=>$key2,$val2"  cond="$val2['link']">
+                        <a class="sub-menu" href="{$val2['href']}" |cond="$val2['open_window']=='Y'">{$val2['text']}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <button type="button" class="sitemap-close">
+            <span class="icon-x"></span>
+        </button>        
+    </div>
+    <!-- mobile -->
+        <div class="wrap hidden-lg hidden-md">
+        <ul class="dp-sp-between menu-wrapper">
+            <!-- 1차 메뉴 -->
+            <li class="flex" loop="$main_menu->list=>$key1,$val1">
+                <span class="menu-wrap main-menu bold2">{$val1['text']}</span>
+                <!-- 2차 메뉴 -->
+                <div class="sub-wrap" cond="$val1['list']">
+                    <ul class="fadeIn wow" style="animation-delay: 0.2s;">
+                        <li loop="$val1['list']=>$key2,$val2" cond="$val2['link']">
+                            <a class="sub-menu light1" href="{$val2['href']}">{$val2['text']}
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <button type="button" class="sitemap-close">
+            <span class="icon-x"></span>
+        </button>
+    </div>
+    <ul class="sns-box dp-flex">
+        <li class="sns-circle">
+            <a href="https://www.youtube.com/c/BusanEnm" target="_blank" class="dp-center">
+                <img src="../img/main/site_sns_01.png" alt="유튜브아이콘">
+            </a>
+        </li>
+        <li class="sns-circle">
+            <a href="https://pf.kakao.com/_pivlj" target="_blank" class="dp-center">
+                <img src="../img/main/site_sns_02.png" alt="카카오아이콘">
+            </a>
+        </li>
+        <li class="sns-circle">
+            <a href="https://www.instagram.com/busan_enm/" class="dp-center" target="_blank">
+                <img src="../img/main/site_sns_03.png" alt="인스타아이콘">
+            </a>
+        </li>
+        <li class="sns-circle">
+            <a href="https://enm0919.iwinv.net/index.php?act=dispMemberLoginForm" class="dp-center">
+                <img src="../img/main/site_sns_04.png" alt="관리자아이콘">
+            </a>
+        </li>
+    </ul>
+</section>
+
+<script>
+    wow = new WOW(
+        {
+            animateClass: 'animate' // old default
+        }
+    )
+    wow.init();
+</script>
+
+<script>
+$(document).ready(function(){
+
+    if(window.location.pathname === "/" || window.location.pathname === "/index") {
+
+        $(window).resize(function(){ 
+            if (window.innerWidth > 1025) {  // 다바이스 크기가 1024이상일때 
+            
+                $(document).on('scroll', function(){
+                    if($(window).scrollTop() > 100){
+                        $('header').css('background-color','#ffffff');
+                        $('header').css('border-bottom','1px solid #e1e1e1');
+                        $('.gnb .menu .gnb-list').hover(function(){
+                            $('.gnb-list .second-menu').addClass('sub-menu-hover');
+                        });
+
+                    }else{
+                        $('header').css('background-color','rgb(255 255 255 / 60%)');
+                        $('header').css('border-bottom','none');
+                        $('.gnb .menu .gnb-list').hover(function(){
+                            $('.gnb-list .second-menu').removeClass('sub-menu-hover');
+                        });
+
+                    }
+                });
+
+            } else {
+                
+                $(document).on('scroll', function(){
+                    if($(window).scrollTop() > 100){
+                        
+
+                    }else{
+
+                    }
+                });
+            }
+        
+        }).resize(); 
+            
+
+
+    }else{
+        $('header').css('background-color','#ffffff');
+        $('header').css('border-bottom','1px solid #e1e1e1');
+        $('.gnb .menu .gnb-list').hover(function(){
+            $('.gnb-list .second-menu').addClass('sub-menu-hover');
+        });
+    }
+
+});
+
+</script>

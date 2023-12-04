@@ -1,0 +1,39 @@
+{@$_idx=0}
+<!--@foreach($widget_info->content_items as $key => $item)-->
+	<div class="col-md-4 col-sm-6 col-xs-6 widget_wrap" <!--@if($widget_info->show_always_new == 'N' && $_idx >= $widget_info->list_count)--> style="display:none"<!--@end-->>				
+		<div class="widget_box text-center">
+			{@
+				$extras = $item->getExtraVar();
+				$thumbnail_id = str_replace('https://player.vimeo.com/video/','',$extras);
+			}
+			<a href="{$item->getLink()}">
+				<img id="{$thumbnail_id}" class="vimeothumb thumbnailimg center-block" style="width:100%;height:100%;" class="thumbnailimg"/>
+			</a>
+		</div>
+		<div class="widget_title_box text-center">
+			<a href="{$item->getLink()}" id="sermon_title" class="title">{$item->getTitle($widget_info->subject_cut_size)}</a>
+		</div>
+	</div>
+	{@$_idx++}
+<!--@end-->
+
+<style>
+	@media (min-width: 1200px) {
+		.vimeo_latest {width: 320px; height: 180px;}
+	}
+</style>
+<!--
+<script>	
+//<!--<![CDATA[ 
+jQuery(function(){ 
+	jQuery("#widgetVimeothumb .vimeothumb").each(function(index){ 
+	var thumbnail_id = jQuery(this).attr("id"); 
+	jQuery.getJSON('http://www.vimeo.com/api/v2/video/' + thumbnail_id + '.json?callback=?', {format: "json"}, function(data) { 
+		jQuery("#"+thumbnail_id).attr('src', data[0].thumbnail_large); 
+		}); 
+  
+	}); 
+}); 
+//]]>--> 
+</script>
+<!--end--> 

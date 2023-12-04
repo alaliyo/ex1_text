@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.2">
+    <title xml:lang="ko">효광교회</title>
+    <title xml:lang="en">HGchurch</title>
+    <description xml:lang="ko">
+        우리기획 : doweb (web@doweb.kr)		
+    </description>
+    <description xml:lang="en">
+       Woori Agency : doweb (web@doweb.kr)
+    </description>
+    <version>0.0.1</version>
+    <date>2021-04-22</date>
+
+    <author email_address="web@doweb.kr" link="http://doweb.kr/">
+        <name xml:lang="ko">doweb</name>
+        <name xml:lang="en">doweb</name>
+    </author>
+
+    <extra_vars>
+		<group>
+			<title xml:lang="ko">기본 설정</title>
+			<title xml:lang="en">Basic Settings</title>
+			<var name="logo_img" type="image">
+				<title xml:lang="ko">◈ 로고 이미지</title>
+				<title xml:lang="en">◈ Logo image</title>
+				<description xml:lang="ko">로고 이미지를 업로드하세요.(세로 60px 권장)</description>
+			</var>
+			<var name="index_url" type="text">
+				<title xml:lang="ko">ㄴ로고 링크</title>
+				<title xml:lang="en">ㄴLogo link</title>
+				<description xml:lang="ko">로고 이미지 클릭 시 이동할 메인 페이지 링크 값을 입력하세요.(예시. home)</description>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">슬라이드</title>
+			<title xml:lang="en">Main Slide Settings</title>
+			<var name="slide_num" type="select">
+				<title xml:lang="ko">◈ 슬라이드 수</title>
+				<title xml:lang="en">Slide number</title>
+				<description xml:lang="ko">슬라이드 수를 선택하세요. 기본 3</description>
+				<options value="6">
+					<title xml:lang="ko">6</title>
+					<title xml:lang="en">6</title>
+				</options>
+				<options value="5">
+					<title xml:lang="ko">5</title>
+					<title xml:lang="en">5</title>
+				</options>
+				<options value="4">
+					<title xml:lang="ko">4</title>
+					<title xml:lang="en">4</title>
+				</options>
+				<options value="3">
+					<title xml:lang="ko">3</title>
+					<title xml:lang="en">3</title>
+				</options>
+				<options value="2">
+					<title xml:lang="ko">2</title>
+					<title xml:lang="en">2</title>
+				</options>
+				<options value="1">
+					<title xml:lang="ko">1(정지)</title>
+					<title xml:lang="en">1(정지)</title>
+				</options>
+			</var>
+			<var name="promo_height" type="text">
+				<title xml:lang="ko">◈ 슬라이드 세로</title>
+				<title xml:lang="en">Slide height</title>
+				<description xml:lang="ko">슬라이드 세로 값을 입력하세요. (%, px. 기본 30%)</description>
+			</var>
+			<var name="promo_time" type="text">
+				<title xml:lang="ko">◈ 인터벌</title>
+				<title xml:lang="en">Interval</title>
+				<description xml:lang="ko">슬라이드 정시 속도를 입력하세요. 비워두면 기본 5000(1초 = 1000)</description>
+			</var>
+			<var name="slide_img1" type="image">
+				<title xml:lang="ko">1) 슬라이드 이미지</title>
+				<title xml:lang="en">1) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+			<var name="slide_img2" type="image">
+				<title xml:lang="ko">2) 슬라이드 이미지</title>
+				<title xml:lang="en">2) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+			<var name="slide_img3" type="image">
+				<title xml:lang="ko">3) 슬라이드 이미지</title>
+				<title xml:lang="en">3) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+			<var name="slide_img4" type="image">
+				<title xml:lang="ko">4) 슬라이드 이미지</title>
+				<title xml:lang="en">4) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+			<var name="slide_img5" type="image">
+				<title xml:lang="ko">5) 슬라이드 이미지</title>
+				<title xml:lang="en">5) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+			<var name="slide_img6" type="image">
+				<title xml:lang="ko">6) 슬라이드 이미지</title>
+				<title xml:lang="en">6) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">모바일 슬라이드</title>
+			<title xml:lang="en">Main Mobile Slide Settings</title>
+			<var name="slide_num_m" type="select">
+				<title xml:lang="ko">◈ 모바일 슬라이드 수</title>
+				<title xml:lang="en">Slide number</title>
+				<description xml:lang="ko">슬라이드 수를 선택하세요. 기본 3</description>
+				<options value="6">
+					<title xml:lang="ko">6</title>
+					<title xml:lang="en">6</title>
+				</options>
+				<options value="5">
+					<title xml:lang="ko">5</title>
+					<title xml:lang="en">5</title>
+				</options>
+				<options value="4">
+					<title xml:lang="ko">4</title>
+					<title xml:lang="en">4</title>
+				</options>
+				<options value="3">
+					<title xml:lang="ko">3</title>
+					<title xml:lang="en">3</title>
+				</options>
+				<options value="2">
+					<title xml:lang="ko">2</title>
+					<title xml:lang="en">2</title>
+				</options>
+				<options value="1">
+					<title xml:lang="ko">1(정지)</title>
+					<title xml:lang="en">1(정지)</title>
+				</options>
+			</var>
+			<var name="promo_height_m" type="text">
+				<title xml:lang="ko">◈ 모바일 슬라이드 세로</title>
+				<title xml:lang="en">Mobile Slide height</title>
+				<description xml:lang="ko">슬라이드 세로 값을 입력하세요. (%, px. 기본 30%)</description>
+			</var>
+			<var name="promo_time_m" type="text">
+				<title xml:lang="ko">◈ 인터벌</title>
+				<title xml:lang="en">Interval</title>
+				<description xml:lang="ko">슬라이드 정시 속도를 입력하세요. 비워두면 기본 5000(1초 = 1000)</description>
+			</var>
+			<var name="slide_img1_m" type="image">
+				<title xml:lang="ko">1) 슬라이드 이미지</title>
+				<title xml:lang="en">1) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+			<var name="slide_img2_m" type="image">
+				<title xml:lang="ko">2) 슬라이드 이미지</title>
+				<title xml:lang="en">2) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+			<var name="slide_img3_m" type="image">
+				<title xml:lang="ko">3) 슬라이드 이미지</title>
+				<title xml:lang="en">3) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+			<var name="slide_img4_m" type="image">
+				<title xml:lang="ko">4) 슬라이드 이미지</title>
+				<title xml:lang="en">4) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+			<var name="slide_img5_m" type="image">
+				<title xml:lang="ko">5) 슬라이드 이미지</title>
+				<title xml:lang="en">5) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+			<var name="slide_img6_m" type="image">
+				<title xml:lang="ko">6) 슬라이드 이미지</title>
+				<title xml:lang="en">6) Slide Image</title>
+				<description xml:lang="ko">슬라이드 이미지를 업로드하세요.</description>
+			</var>
+		</group>
+    </extra_vars>
+
+    <menus>
+        <menu name="main_menu" default="true">
+            <title xml:lang="ko">메인 메뉴</title>
+            <title xml:lang="en">Top menu</title>
+            <maxdepth>2</maxdepth>
+        </menu>
+    </menus>
+</layout>

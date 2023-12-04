@@ -1,0 +1,134 @@
+{Context::set('layout','none')}
+{Context::set('admin_bar','false')}
+<style type="text/css">
+body {
+	margin:0;
+	padding:0;
+	overflow:hidden;
+	width:100%;
+	height:100%;
+}
+</style>
+<load target="js/jwplayer.js" />
+<body>
+{@ 
+	$videolistwidth	= $module_info->display_videoplaywidth+280 ;
+}
+<div id="videoresize" style="width:<!--@if($module_info->display_videoplaylistuse=='N')--><!--@if($module_info->display_videoplaywidth)-->{$module_info->display_videoplaywidth}<!--@else-->800<!--@end--><!--@else--><!--@if($module_info->display_videoplaywidth)-->{$videolistwidth}<!--@else-->1080<!--@end--><!--@end-->px;height:<!--@if($module_info->display_videoplayheight)-->{$module_info->display_videoplayheight}<!--@else-->600<!--@end-->px;"><div id="myElement"></div></div>
+<block cond="!Mobile::isMobileCheckByAgent()">
+<script>
+//<!--<![CDATA[ 
+    jwplayer("myElement").setup({
+		playlist:[
+		<!--@if($module_info->display_youtubelink)-->
+		{
+  		file: "{$module_info->display_youtubelink}",
+        title: "하이",
+        description: "환영합니다."
+		},
+		<!--@else-->
+			<!--@foreach($notice_list as $no => $document)-->
+			<!--@if($document->getExtraEidValue('video'))--><!--@if(preg_match('/ted/', $document->getExtraEidValue('video')))--><!--@elseif(preg_match('/vimeo/', $document->getExtraEidValue('video')))--><!--@elseif(preg_match('/drive.google/', $document->getExtraEidValue('video')))--><!--@else-->
+		{
+		file: "{$document->getExtraEidValue('video')}",
+		title: "{@ $title = strip_tags($document->getTitle($module_info->subject_cut_size));}{$title}",
+		description: "{@ $summary = strip_tags($document->getSummary($module_info->content_cut_size));$summary = str_replace("\n","", $summary);$summary = str_replace("\r", "", $summary);}{$summary}"
+		},
+			<!--@end--><!--@end--><!--@end-->
+		<!--@end-->
+		<!--@foreach($document_list as $no => $document)--><!--@if($document->getExtraEidValue('video'))--><!--@if(preg_match('/ted/', $document->getExtraEidValue('video')))--><!--@elseif(preg_match('/vimeo/', $document->getExtraEidValue('video')))--><!--@elseif(preg_match('/drive.google/', $document->getExtraEidValue('video')))--><!--@else-->
+		{
+		file: "{$document->getExtraEidValue('video')}",
+		title: "{@ $title = strip_tags($document->getTitle($module_info->subject_cut_size));}{$title}",
+		description: "{@ $summary = strip_tags($document->getSummary($module_info->content_cut_size));$summary = str_replace("\n","", $summary);$summary = str_replace("\r", "", $summary);}{$summary}"
+		},<!--@end--><!--@end--><!--@end-->
+		{
+		}],
+		<!--@if($module_info->display_videoplaylistuse=='N')-->
+			<!--@if($module_info->display_videoplaywidth)-->
+				width: {$module_info->display_videoplaywidth},
+			<!--@else-->
+				width: 800,
+			<!--@end-->		
+		<!--@else-->
+			<!--@if($module_info->display_videoplaywidth)-->
+				width: {$videolistwidth},
+			<!--@else-->
+				width: 1080,	
+			<!--@end-->							
+		<!--@end-->			
+		<!--@if($module_info->display_videoplayheight)-->
+		height: {$module_info->display_videoplayheight},
+		<!--@else-->
+		height: 600,
+		<!--@end-->
+		<!--@if($module_info->display_videoplaylistuse=='N')-->
+		<!--@else-->
+		listbar: {
+			position: "right",
+			size: 280
+		}
+		<!--@end-->
+    });
+//]]>--> 
+</script>
+</block>
+<block cond="Mobile::isMobileCheckByAgent()">
+<script>
+//<!--<![CDATA[ 
+    jwplayer("myElement").setup({
+		playlist:[
+		<!--@if($module_info->display_youtubelink)-->
+		{
+  		file: "{$module_info->display_youtubelink}",
+        title: "하이",
+        description: "환영합니다."
+		},
+		<!--@else-->
+			<!--@foreach($notice_list as $no => $document)-->
+			<!--@if($document->getExtraEidValue('video'))--><!--@if(preg_match('/ted/', $document->getExtraEidValue('video')))--><!--@elseif(preg_match('/vimeo/', $document->getExtraEidValue('video')))--><!--@elseif(preg_match('/drive.google/', $document->getExtraEidValue('video')))--><!--@elseif(preg_match('/youtu/', $document->getExtraEidValue('video')))--><!--@else-->
+		{
+		file: "{$document->getExtraEidValue('video')}",
+		title: "{@ $title = strip_tags($document->getTitle($module_info->subject_cut_size));}{$title}",
+		description: "{@ $summary = strip_tags($document->getSummary($module_info->content_cut_size));$summary = str_replace("\n","", $summary);$summary = str_replace("\r", "", $summary);}{$summary}"
+		},
+			<!--@end--><!--@end--><!--@end-->
+		<!--@end-->
+		<!--@foreach($document_list as $no => $document)--><!--@if($document->getExtraEidValue('video'))--><!--@if(preg_match('/ted/', $document->getExtraEidValue('video')))--><!--@elseif(preg_match('/vimeo/', $document->getExtraEidValue('video')))--><!--@elseif(preg_match('/drive.google/', $document->getExtraEidValue('video')))--><!--@elseif(preg_match('/youtu/', $document->getExtraEidValue('video')))--><!--@else-->
+		{
+		file: "{$document->getExtraEidValue('video')}",
+		title: "{@ $title = strip_tags($document->getTitle($module_info->subject_cut_size));}{$title}",
+		description: "{@ $summary = strip_tags($document->getSummary($module_info->content_cut_size));$summary = str_replace("\n","", $summary);$summary = str_replace("\r", "", $summary);}{$summary}"
+		},<!--@end--><!--@end--><!--@end-->
+		{
+		}],
+		<!--@if($module_info->display_videoplaylistuse=='N')-->
+			<!--@if($module_info->display_videoplaywidth)-->
+				width: {$module_info->display_videoplaywidth},
+			<!--@else-->
+				width: 800,
+			<!--@end-->		
+		<!--@else-->
+			<!--@if($module_info->display_videoplaywidth)-->
+				width: {$videolistwidth},
+			<!--@else-->
+				width: 1080,	
+			<!--@end-->							
+		<!--@end-->			
+		<!--@if($module_info->display_videoplayheight)-->
+		height: {$module_info->display_videoplayheight},
+		<!--@else-->
+		height: 600,
+		<!--@end-->
+		<!--@if($module_info->display_videoplaylistuse=='N')-->
+		<!--@else-->
+		listbar: {
+			position: "right",
+			size: 280
+		}
+		<!--@end-->
+    });
+//]]>--> 
+</script>
+</block>
+</body>

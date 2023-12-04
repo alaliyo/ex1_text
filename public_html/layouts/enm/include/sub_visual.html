@@ -1,0 +1,70 @@
+<div class="sub-tab-wrapper">
+    <div class="sub-tab">
+        <ul class="tab-wrap" >
+            <li class="tab-menu hidden-xs home-site">
+            <a href="{getSiteUrl()}">
+                <i class="cl-white"></i></a>
+            </li>
+            <li class="menu dropdown">
+                <block loop="$main_menu->list=>$key1,$val1" cond="$val1['selected']">
+                    <span>{$val1['text']}<i class="bi bi-caret-down-fill"></i></span>
+                    <ul class="dropdown-menu">
+                        <block loop="$main_menu->list=>$skey1,$sval1" cond="$sval1['link']">
+                            <li class="<!--@if($sval1['selected'])-->active<!--@end-->">
+                                <a href="{$sval1['href']}"
+                                target="_blank"|cond="$sval1['open_window']=='Y'"
+                                class="dropdown-item">
+                                {$sval1['link']}</a>
+                            </li>
+                        </block>
+                    </ul>
+                </block>
+            </li>
+            <li class="menu dropdown">
+                <block loop="$main_menu->list=>$key1,$val1" cond="$val1['selected']">
+                    <block loop="$val1['list']=>$key2,$val2" cond="$val2['selected']">
+                    <span>{$val2['text']}<i class="bi bi-caret-down-fill"></i></span>
+                    <ul cond="$val1['list']" class="dropdown-menu">
+                        <block loop="$val1['list']=>$key2,$val2" cond="$val2['link']">
+                            <li class="<!--@if($val2['selected'])-->active<!--@end-->">
+                                <a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'" class="dropdown-item">
+                                {$val2['link']} </a>
+                            </li>
+                        </block>
+                    </ul>
+                    </block>
+                </block>
+            </li>
+            <!--@if($mid == 'sub02_0301' || $mid == 'sub02_0302' || $mid == 'sub02_0303' || $mid == 'sub02_0304' || $mid == 'sub02_0305')-->
+            <li class="menu dropdown">
+				<block loop="$main_menu->list=>$key1,$val1" cond="$val1['selected']">
+					<block loop="$val1['list']=>$key2,$val2" cond="$val2['selected']">
+                        <block loop="$val2['list']=>$key3,$val3">
+                        <span cond="$val3['selected']">{($val3['text'])}<i class="bi bi-caret-down-fill"></i></span>
+                        </block>
+                        <ul cond="$val1['list']" class="dropdown-menu">
+                            <block loop="$val2['list']=>$key3,$val3">
+                                <li class="<!--@if($val3['selected'])-->active<!--@end-->">
+                                    <a href="{$val3['href']}" target="_blank"|cond="$val3['open_window']=='Y'" class="dropdown-item">
+                                        {$val3['link']}
+                                    </a>
+                                </li>
+                            </block>
+                        </ul>
+					</block>
+				</block>
+			</li>
+            <!--@end-->
+        </ul>
+    </div>
+</div>
+
+<script>
+     $(document).mouseup(function(e){
+    const dropdown = $('.dropdown');
+    if (dropdown.has(e.target).length == 0) {
+        $('.dropdown').removeClass('on')
+        $('.dropdown').find('ul').slideUp();
+    }
+});
+</script>

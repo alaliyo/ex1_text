@@ -1,0 +1,59 @@
+<div class="planner_control">
+    <!--@if(($pOption == 'M' || $pOption == null) && $ind_weekly_base <= 0)-->
+    <div class="planner_this">
+    <!--//    <span>{$pYear} / {$pMonth}&nbsp;&nbsp;({$pYear+2333})</span><!--//숫자형식으로 년월 표시-->
+    <!-- <span>{$pMon}&nbsp;{$pYear}</span> -->
+    <!-- {@ print_r($pMon)} -->
+    </div>
+    <!--@else-->
+    <div class="planner_this_week">
+    <div <!--@if(!$ind_mobile)-->style ="float:left;"<!--@else-->style ="float:left;"<!--@end--> >{date('Y/m/j', $dispStart_stamp)." ~ "}</div>
+    </div>
+    <div <!--@if(!$ind_mobile)-->style ="float:left; margin-top: 2px;"<!--@else-->style ="float:left;"<!--@end--> >
+    <a href="{$linkpath}&pOption_2={$pOption_2}&pYear={$dispStartYY}&pMonth={$dispStartMM}&pDay={$dispStartDD-7}"><span class="month_button" title="previous week"><</span></a>
+    {@ $url = getUrl('pGanjioption',1,'pYear','','pMonth','','pDay','')}
+    {@ $url = str_replace('&amp;','&',$url)}
+    {@ $nav_yy_mm_dd = date('Y-m-d', strtotime($pYear.'-'.$pMonth.'-'.$pDay))}
+    {@ $tmp_buff = planner123_main::fn_get_datepickerHTML_startDate($nav_yy_mm_dd, $url)}
+    {@ echo html_entity_decode($tmp_buff) //(V570 datepicker로 시작일자 선택)}
+    <a href="{$linkpath}&pOption_2={$pOption_2}&pYear={$dispStartYY}&pMonth={$dispStartMM}&pDay={$dispStartDD+7}"><span class="month_button" title="next week">></span></a>
+    </div>
+    <!--@end-->
+    <div class="planner_navigation">
+    
+    <a href="{$linkpath}&pYear={$pYear}&pMonth={$pMonth-1}">
+        <span class="month_button" title="previous month">
+            <i class="bi bi-chevron-left"></i>
+        </span>
+    </a>
+    <!--@if(!$ind_mobile)-->
+    <!--@for($i=1; $i < 13; $i++)-->
+    
+    <!--@end-->
+    <!--@else--><!--//(V560변경)-->
+    <form name = "fm_select_month">
+    <select name="selectmonth" onchange="document.location.href='{$linkpath}&pYear=' + {$pYear} + '&pMonth=' + this.options[this.selectedIndex].value">
+    <option value='{$pMonth}'>&nbsp;{$pMonth}</option>
+    <!--@for($i=1; $i < 13; $i++)-->
+    <option value='{$i}'>&nbsp;{$i}</option>
+    <!--@end-->
+    </select></form>
+    <!--@endif-->
+    <span>{$pYear}&nbsp;.{$pMonth}</span><!--//영문형식으로 년월 표시-->
+    <a href="{$linkpath}&pYear={$pYear}&pMonth={$pMonth+1}">
+        <span class="month_button" title="next month">
+            <i class="bi bi-chevron-right"></i>
+        </span>
+    </a>
+    <!--@if($module_info->display_country_select != 'N')-->
+    <form name = "fm_holiday_cnt">
+    <select name="selectcountry" onchange="document.location.href='{getUrl('pGanjioption',1,'pHoliday_cnt','')}&pHoliday_cnt=' + this.options[this.selectedIndex].value">
+    <option value='{$holiday_country_code}'>{$holiday_country_name}</option>
+    <!--@foreach($holiday_cnt_arr as $cnt_key => $cnt_val)-->
+    <option value='{$cnt_key}'>{$cnt_val}</option>
+    <!--@end-->
+    </select></form>
+    <!--@endif-->
+    </div>
+    </div>
+    

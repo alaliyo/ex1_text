@@ -1,0 +1,114 @@
+<div class="cmt_editor">
+<!--@if($grant->write_comment && $oDocument->isEnableComment())-->
+<a name="commentwriteed_{$oDocument->document_srl}"></a>
+<div id="commentwrite_{$oDocument->document_srl}" class="collapse paddingtb10 form-inline <!--@if($module_info->display_commentwrite == 'Y')-->in<!--@else--><!--@end-->">
+	<form action="./" method="post" onsubmit="return procFilter(this, insert_comment)" class="bd_wrt cmt_wrt">
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+		<input type="hidden" name="comment_srl" value="" />
+		<input type="hidden" name="content" value="" />
+		<block cond="$mi->cmt_wrt=='editor'"><div class="cmt_editor">{$oDocument->getCommentEditor()}</div></block>
+		<div cond="$mi->cmt_wrt=='simple'" class="simple_wrt paddingb10">
+			<div>
+				<input type="hidden"  id="htm_{$oDocument->document_srl}" value="n" />
+				<textarea id="editor_{$oDocument->document_srl}" class="form-control" cols="50" rows="4"></textarea>
+			</div>
+		</div>	
+		<div class="pull-right" style="display:none"|cond="$mi->cmt_wrt!='editor'">
+			<!--@if(!$is_logged)-->
+			<input class="form-control" type="text" name="nick_name" value="{$lang->writer}"  title="{$lang->writer}" onfocus="if(this.value==this.title)this.value='';return false;" />
+			<input class="form-control" type="password" name="password" value="{$lang->password}" title="{$lang->password}" onfocus="if(this.value==this.title)this.value='';return false;" />
+			<!-- <input class="form-control" type="text" name="email_address" value="{$lang->email_address}" title="{$lang->email_address}" onfocus="if(this.value==this.title)this.value='';return false;" /> -->
+			<!-- <input class="form-control" type="text" name="homepage" value="{$lang->homepage}" title="{$lang->homepage}" onfocus="if(this.value==this.title)this.value='';return false;" /> -->
+			<!--@end-->
+			<block cond="$is_logged">
+			<label class="checkbox-inline" for="notify_message_{$oDocument->document_srl}">
+			<input type="checkbox" name="notify_message" value="Y" id="notify_message_{$oDocument->document_srl}"/>
+			{$lang->notify} </label>
+			</block>
+			<block cond="$module_info->use_status!='PUBLIC'">
+			<label class="checkbox-inline" for="is_secret_{$oDocument->document_srl}">
+			<input type="checkbox" name="is_secret" value="Y" id="is_secret_{$oDocument->document_srl}"/>
+			비밀글 </label>
+			</block>
+			<input class="btn btn-default btn-sm" type="submit" value="{$lang->cmd_submit}"/>
+		</div>
+		<div class="clearfix"></div>
+	</form>
+</div>
+
+<!--// 댓글수정 -->
+<div cond="$rd_idx==0" id="mod_cmt" class="collapse">
+	<form action="./" method="post" onsubmit="return procFilter(this,insert_comment)" class="bd_wrt">
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="document_srl" value="{$oDocument->get('document_srl')}" />
+		<input type="hidden" name="comment_srl" value="" />
+		<input type="hidden" name="content" value="" />
+		<div class="simple_wrt paddingb10">
+			<input type="hidden" id="htm_3" value="n" />
+			<textarea id="editor_3" class="form-control" cols="50" rows="4"></textarea>
+		</div>
+		<div class="pull-left hide">
+			<a class="btn btn-sm btn-default" href="{getUrl('act','dispBoardModifyComment','comment_srl',$comment->comment_srl)}">에디터모드</a>
+		</div>		
+		<div class="ie8 pull-right form-inline">
+			<block cond="!$is_logged">
+				<input class="form-control" type="text" name="nick_name" value="{$lang->writer}"  title="{$lang->writer}" onfocus="if(this.value==this.title)this.value='';return false;" />
+				<input class="form-control" type="password" name="password" value="{$lang->password}" title="{$lang->password}" onfocus="if(this.value==this.title)this.value='';return false;" />
+				<input class="form-control" type="text" name="email_address" value="{$lang->email_address}" title="{$lang->email_address}" onfocus="if(this.value==this.title)this.value='';return false;" />
+				<!-- <input class="form-control" type="text" name="homepage" value="{$lang->homepage}" title="{$lang->homepage}" onfocus="if(this.value==this.title)this.value='';return false;" /> -->
+			</block>
+			<block cond="$is_logged">
+				<label class="checkbox-inline">
+				<input type="checkbox" name="notify_message" value="Y" id="notify_message" />
+				{$lang->notify} </label>
+			</block>
+				<block cond="$module_info->use_status!='PUBLIC'">
+				<label class="checkbox-inline">
+				<input type="checkbox" name="is_secret" value="Y" id="is_secret"/>
+				비밀글 </label>
+				</block>
+				<input class="btn btn-default btn-sm bd_btn fr"  type="submit" value="{$lang->cmd_modify}" onclick="setTimeout('location.reload()',700);"/>	
+				<a href="#" class="btn btn-default btn-sm" onclick="jQuery('#mod_cmt').fadeOut().parent().find('.mod_comment').focus();return false">{$lang->cmd_close}</a>
+		</div>
+	</form>
+</div>
+
+<!--// 대댓글 -->
+<div cond="$rd_idx==0" id="re_cmt" class="collapse">
+	<form action="./" method="post" onsubmit="return procFilter(this,insert_comment)" class="bd_wrt">
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+		<input type="hidden" name="content" value="" />
+		<input type="hidden" name="parent_srl" value="" />
+		<div class="simple_wrt paddingb10">
+			<input type="hidden" id="htm_2" value="n" />
+			<textarea id="editor_2" class="form-control" cols="50" rows="4"></textarea>
+		</div>
+		<div class="pull-left hide">
+			<a class="wysiwyg m_no btn btn-sm btn-default" href="#">에디터모드</a>
+		</div>
+		<div class="ie8 pull-right form-inline">
+			<block cond="!$is_logged">
+				<input class="form-control" type="text" name="nick_name" value="{$lang->writer}"  title="{$lang->writer}" onfocus="if(this.value==this.title)this.value='';return false;" />
+				<input class="form-control" type="password" name="password" value="{$lang->password}" title="{$lang->password}" onfocus="if(this.value==this.title)this.value='';return false;" />
+				<input class="form-control" type="text" name="email_address" value="{$lang->email_address}" title="{$lang->email_address}" onfocus="if(this.value==this.title)this.value='';return false;" />
+				<!-- <input class="form-control" type="text" name="homepage" value="{$lang->homepage}" title="{$lang->homepage}" onfocus="if(this.value==this.title)this.value='';return false;" /> -->
+			</block>
+				<block cond="$is_logged">
+				<label class="checkbox-inline">
+				<input type="checkbox" name="notify_message" value="Y" id="notify_message"/>
+				{$lang->notify} </label>
+				</block>
+				<block cond="$module_info->use_status!='PUBLIC'">
+				<label class="checkbox-inline">
+				<input type="checkbox" name="is_secret" value="Y" id="is_secret"/>
+				비밀글 </label>
+				</block>
+				<input class="btn btn-default btn-sm"  type="submit" value="{$lang->cmd_submit}"/>	
+				<a href="#" class="btn btn-default btn-sm"  onclick="jQuery('#re_cmt').fadeOut().parent().find('.re_comment').focus();return false">{$lang->cmd_close}</a>
+		</div>
+	</form>
+</div>
+<!--@end-->
+</div>

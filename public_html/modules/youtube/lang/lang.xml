@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lang>
+	<!--Common-->
+	<item name="youtube">
+		<value xml:lang="ko"><![CDATA[유튜브]]></value>
+		<value xml:lang="en"><![CDATA[YouTube]]></value>
+	</item>
+	<item name="youtube_insert">
+		<value xml:lang="ko"><![CDATA[새로 만들기]]></value>
+		<value xml:lang="en"><![CDATA[Insert]]></value>
+	</item>
+	<item name="youtube_browse">
+		<value xml:lang="ko"><![CDATA[목록 보기]]></value>
+		<value xml:lang="en"><![CDATA[Browse]]></value>
+	</item>
+	<item name="youtube_peruse">
+		<value xml:lang="ko"><![CDATA[자세히 보기]]></value>
+		<value xml:lang="en"><![CDATA[Peruse]]></value>
+	</item>
+	<item name="youtube_update">
+		<value xml:lang="ko"><![CDATA[고치기]]></value>
+		<value xml:lang="en"><![CDATA[Update]]></value>
+	</item>
+	<item name="youtube_delete">
+		<value xml:lang="ko"><![CDATA[지우기]]></value>
+		<value xml:lang="en"><![CDATA[Delete]]></value>
+	</item>
+	<item name="youtube_copy">
+		<value xml:lang="ko"><![CDATA[베끼기]]></value>
+		<value xml:lang="en"><![CDATA[Copy]]></value>
+	</item>
+	<item name="youtube_cancel">
+		<value xml:lang="ko"><![CDATA[그만두기]]></value>
+		<value xml:lang="en"><![CDATA[Cancel]]></value>
+	</item>
+	<item name="youtube_category">
+		<value xml:lang="ko"><![CDATA[카테고리]]></value>
+		<value xml:lang="en"><![CDATA[Category]]></value>
+	</item>
+	<item name="youtube_category_name">
+		<value xml:lang="ko"><![CDATA[카테고리 이름]]></value>
+		<value xml:lang="en"><![CDATA[Category Name]]></value>
+	</item>
+
+	<!--Admin: Browse-->
+	<item name="youtube_menu_management">
+		<value xml:lang="ko"><![CDATA[유튜브 메뉴 관리]]></value>
+		<value xml:lang="en"><![CDATA[YouTube Module Management]]></value>
+	</item>
+	<item name="about_youtube_module">
+		<value xml:lang="ko"><![CDATA[유튜브 모듈을 사용하는 메뉴(모듈 인스턴스)들을 관리합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Manage menus(module instances) using YouTube module.]]></value>
+	</item>
+	
+	<item name="youtube_browse_menus">
+		<value xml:lang="ko"><![CDATA[유튜브 메뉴 목록 보기]]></value>
+		<value xml:lang="en"><![CDATA[Browse menus of YouTube module]]></value>
+	</item>
+	
+	<item name="youtube_menu_category">
+		<value xml:lang="ko"><![CDATA[메뉴 카테고리]]></value>
+		<value xml:lang="en"><![CDATA[Menu Category]]></value>
+	</item>
+	<item name="youtube_menu_id">
+		<value xml:lang="ko"><![CDATA[메뉴 아이디]]></value>
+		<value xml:lang="en"><![CDATA[Menu ID]]></value>
+	</item>
+	<item name="youtube_about_menu_id">
+		<value xml:lang="ko"><![CDATA[메뉴 아이디는 http://주소/?mid=[메뉴 아이디] 처럼 직접 호출할 수 있는 값입니다. (영문+[영문+숫자+_] 만 가능. 최대 40 글자)]]></value>
+		<value xml:lang="en"><![CDATA[Menu ID is the value to call a menu directly.]]></value>
+	</item>
+	<item name="youtube_insert_menu">
+		<value xml:lang="ko"><![CDATA[메뉴 새로 만들기]]></value>
+		<value xml:lang="en"><![CDATA[Insert a menu]]></value>
+	</item>
+	<item name="youtube_manage_selected_menu">
+		<value xml:lang="ko"><![CDATA[골라낸 메뉴 고치기(지원 예정)]]></value>
+		<value xml:lang="en"><![CDATA[Manage selected menus(N/A)]]></value>
+	</item>
+	
+	<!--Admin: Update-->
+	<item name="youtube_update_menu">
+		<value xml:lang="ko"><![CDATA[유튜브 메뉴 업데이트]]></value>
+		<value xml:lang="en"><![CDATA[Update YouTube Menus]]></value>
+	</item>
+	<item name="youtube_menu_commons">
+		<value xml:lang="ko"><![CDATA[메뉴(모듈 인스턴스) 공통]]></value>
+		<value xml:lang="en"><![CDATA[Common things of a menu(module instance)]]></value>
+	</item>
+	<item name="mlayout">
+		<value xml:lang="ko"><![CDATA[레이아웃(모바일)]]></value>
+		<value xml:lang="en"><![CDATA[Layout(Mobile)]]></value>
+	</item>
+	<item name="mskin">
+		<value xml:lang="ko"><![CDATA[스킨(모바일)]]></value>
+		<value xml:lang="en"><![CDATA[Skin(Mobile)]]></value>
+	</item>
+	<item name="using_mskin">
+		<value xml:lang="ko"><![CDATA[모바일 스킨 사용하기]]></value>
+		<value xml:lang="en"><![CDATA[Using a skin for mobile.]]></value>
+	</item>
+	<item name="youtube_essentials">
+		<value xml:lang="ko"><![CDATA[필수]]></value>
+		<value xml:lang="en"><![CDATA[Essentials]]></value>
+	</item>
+	<item name="youtube_view">
+		<value xml:lang="ko"><![CDATA[보기]]></value>
+		<value xml:lang="en"><![CDATA[View]]></value>
+	</item>
+	<item name="youtube_performance">
+		<value xml:lang="ko"><![CDATA[성능]]></value>
+		<value xml:lang="en"><![CDATA[Performance]]></value>
+	</item>
+	
+	<!--Admin: Update-->
+	<item name="youtube_update_menu_authority">
+		<value xml:lang="ko"><![CDATA[유튜브 메뉴 권한 업데이트]]></value>
+		<value xml:lang="en"><![CDATA[Update Authority of YouTube Menus]]></value>
+	</item>
+	
+	<!--SimpleSetup-->
+	<item name="api_key">
+		<value xml:lang="ko"><![CDATA[구글 API 키]]></value>
+		<value xml:lang="en"><![CDATA[Google API Key]]></value>
+	</item>
+	<item name="about_api_key">
+		<value xml:lang="ko"><![CDATA[<a href='//code.google.com/apis/console' target='_blank'>구글 개발자 콘솔</a>에서 API 키를 발급 받아 입력하십시오. API 키를 입력하지 않으면 사용이 제한됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[You should input a API Key you can get from Google Dev. Console(https://code.google.com/apis/console). If you don't input a API Key, you can be banned to access YouTube.]]></value>
+	</item>
+	<item name="playlist_id">
+		<value xml:lang="ko"><![CDATA[채널/재생목록 아이디]]></value>
+		<value xml:lang="en"><![CDATA[Channel/Playlist ID]]></value>
+	</item>
+	<item name="about_playlist_id">
+		<value xml:lang="ko"><![CDATA[채널 또는 재생목록의 아이디입니다. 채널 아이디의 경우 "youtube.com/[채널 아이디]", "youtube.com/channel/[채널 아이디]" 또는 "youtube.com/user/[채널 아이디]"로 나타납니다. 재생목록 아이디의 경우 URL에서 "youtube.com/playlist?list=[재생목록 아이디]"의 형식으로 나타납니다.]]></value>
+		<value xml:lang="en"><![CDATA[It's ID of a playlist. It's found in the playlist's URL(youtube.com/playlist?list=[playlist id]).]]></value>
+	</item>
+	<item name="using_video_id">
+		<value xml:lang="ko"><![CDATA[동영상 아이디 사용]]></value>
+		<value xml:lang="en"><![CDATA[Using video ID]]></value>
+	</item>
+	<item name="about_using_video_id">
+		<value xml:lang="ko"><![CDATA[동영상 보기 시, 재생목록에서의 위치 대신 동영상 아이디를 기준으로 정보를 조회합니다. 더욱 정확하게 작동하는 방식이나, API 사용 비용(https://developers.google.com/youtube/v3/determine_quota_cost)이 증가하며 반응 속도가 느려집니다.(기본: 해제)]]></value>
+		<value xml:lang="en"><![CDATA[Query by Video ID, not the position of playlists. It's more accurate way. But API cost can be increasing and response time will be longer.]]></value>
+	</item>
+	<item name="list_count">
+		<value xml:lang="ko"><![CDATA[목록 수]]></value>
+		<value xml:lang="en"><![CDATA[The number of list items]]></value>
+	</item>
+	<item name="about_youtube_list_count">
+		<value xml:lang="ko"><![CDATA[한 페이지에 표시될 동영상 수를 지정할 수 있습니다.(기본: 20개, 최대: 50개)]]></value>
+		<value xml:lang="en"><![CDATA[It's the number of items.(Max 50)]]></value>
+	</item>
+	<item name="cache_time">
+		<value xml:lang="ko"><![CDATA[캐시 새로고침 간격]]></value>
+		<value xml:lang="en"><![CDATA[Cache Refershing Interval Time]]></value>
+	</item>
+	<item name="about_cache_time">
+		<value xml:lang="ko"><![CDATA[캐시를 새로고침하는 시간 간격입니다. 단위는 분 단위입니다. 입력하지 않거나 0을 입력하면 데이터를 실시간으로 가져옵니다.(기본: 0)]]></value>
+		<value xml:lang="en"><![CDATA[It's a interval time to get refresh data. Unit is a minute. If you input 0 or nothing in this field, this module gets data in real time.]]></value>
+	</item>
+	<item name="inverse_order">
+		<value xml:lang="ko"><![CDATA[역순 정렬]]></value>
+		<value xml:lang="en"><![CDATA[Inverse order]]></value>
+	</item>
+	<item name="about_inverse_order">
+		<value xml:lang="ko"><![CDATA[원래 재생목록의 역순으로 출력합니다. YouTube API 자체에서 역순 정렬을 지원하지 않으므로, 상당히 느리며 많은 API 비용이 사용됩니다. YouTube.com에서 재생목록에 대한 여러가지 정렬 옵션을 제공하므로, 그 방법을 먼저 사용하길 권장합니다.(기본: 해제)]]></value>
+		<value xml:lang="en"><![CDATA[Show a list in inverse order.]]></value>
+	</item>
+	<item name="player_width">
+		<value xml:lang="ko"><![CDATA[플레이어 가로 길이]]></value>
+		<value xml:lang="en"><![CDATA[A width of player]]></value>
+	</item>
+	<item name="about_player_width">
+		<value xml:lang="ko"><![CDATA[보기 화면에서의 플레이어 가로 폭 길이입니다.]]></value>
+		<value xml:lang="en"><![CDATA[It's a width of player in a view page]]></value>
+	</item>
+	<item name="player_height">
+		<value xml:lang="ko"><![CDATA[플레이어 세로 길이]]></value>
+		<value xml:lang="en"><![CDATA[A height of player]]></value>
+	</item>
+	<item name="about_player_height">
+		<value xml:lang="ko"><![CDATA[보기 화면에서의 플레이어 세로 폭 길이입니다. 지정하지 않으면 4:3 비율로 자동 조정됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[It's a height of a player in a view page.]]></value>
+	</item>
+	
+	<item name="youtube_get_info">
+		<value xml:lang="ko"><![CDATA[모듈 정보 보기]]></value>
+		<value xml:lang="en"><![CDATA[Get info]]></value>
+	</item>
+	<item name="youtube_go_forum">
+		<value xml:lang="ko"><![CDATA[질문/의견]]></value>
+		<value xml:lang="en"><![CDATA[Go to the forum]]></value>
+	</item>
+	<item name="youtube_advanced_setting">
+		<value xml:lang="ko"><![CDATA[자세히 고치기]]></value>
+		<value xml:lang="en"><![CDATA[Advanced Setting]]></value>
+	</item>
+	
+	<!--Browse-->
+	<item name="thumbnail">
+		<value xml:lang="ko"><![CDATA[미리보기]]></value>
+		<value xml:lang="en"><![CDATA[Thumbnail]]></value>
+	</item>
+	<item name="title">
+		<value xml:lang="ko"><![CDATA[제목]]></value>
+		<value xml:lang="en"><![CDATA[Title]]></value>
+	</item>
+	<item name="channel">
+		<value xml:lang="ko"><![CDATA[글쓴이]]></value>
+		<value xml:lang="en"><![CDATA[Channel]]></value>
+	</item>
+	<item name="date">
+		<value xml:lang="ko"><![CDATA[날짜]]></value>
+		<value xml:lang="en"><![CDATA[Date]]></value>
+	</item>
+	<item name="first_page">
+		<value xml:lang="ko"><![CDATA[첫 페이지]]></value>
+		<value xml:lang="en"><![CDATA[First page]]></value>
+	</item>
+	<item name="last_page">
+		<value xml:lang="ko"><![CDATA[마지막 페이지]]></value>
+		<value xml:lang="en"><![CDATA[Last page]]></value>
+	</item>
+	
+	<!--error-->
+	<item name="error">
+		<value xml:lang="ko"><![CDATA[오류]]></value>
+		<value xml:lang="en"><![CDATA[Error]]></value>
+	</item>
+	<item name="error_occured">
+		<value xml:lang="ko"><![CDATA[오류가 발생했습니다.]]></value>
+		<value xml:lang="en"><![CDATA[An error is occured.]]></value>
+	</item>
+	<item name="keyInvalid">
+		<value xml:lang="ko"><![CDATA[API 키가 잘못되었습니다. 올바르게 입력하였는지 확인하여 주십시오.]]></value>
+		<value xml:lang="en"><![CDATA[API key is invalid.]]></value>
+	</item>
+	<item name="playlistNotFound">
+		<value xml:lang="ko"><![CDATA[지정한 채널 또는 재생목록을 찾을 수 없습니다.]]></value>
+		<value xml:lang="en"><![CDATA[The playlist not found]]></value>
+	</item>
+	<item name="END_OF_LIST">
+		<value xml:lang="ko"><![CDATA[리스트에 있는 항목 수를 초과하여 데이터를 요청하였습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Data requested over the number of videos in the list.]]></value>
+	</item>
+	<item name="NO_PLAYLIST_ID">
+		<value xml:lang="ko"><![CDATA[채널 또는 재생목록 아이디가 입력되지 않았습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Got no channel or playlist id]]></value>
+	</item>
+	<item name="error_with_no_result">
+		<value xml:lang="ko"><![CDATA[조회 중 오류가 발생했습니다. 요청한 ID 값이 잘못되었거나, 입력한 API 키가 올바르지 않을 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[An error is occured. There are some reasons because of ID value, API Key and so on.]]></value>
+	</item>
+</lang>

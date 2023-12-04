@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon version="0.2">
+    <title xml:lang="ko">XENARA 동영상 삽입 애드온</title>
+    <description xml:lang="ko">
+	    사용자정의에 유튜브 또는 비메오의 공유주소를 입력하여, 문서의 본문에 동영상을 삽입하는 애드온입니다.
+    </description>
+    <version>0.1</version>
+    <date>2014-06</date>
+    <author email_address="kolaskks@naver.com" link="http://xenara.co.kr">
+        <name xml:lang="ko">XENARA</name>
+    </author>
+
+  	<extra_vars>
+      <group>
+        <title xml:lang="ko">동영상 기본설정</title>
+	  	  <var name="video_eid" type="text">
+		  	    <title xml:lang="ko">동영상 공유주소 입력 사용자정의이름</title>
+			      <description xml:lang="ko">동영상 공유주소를 입력하는 사용자정의이름(eid)를 입력하세요. (기본: video_link)</description>
+  		  </var>
+
+	  	  <var name="video_width" type="text">
+		  	    <title xml:lang="ko">동영상 가로크기</title>
+			      <description xml:lang="ko">동영상 가로크기를 입력하세요.</description>
+  		  </var>
+	  	  <var name="video_height" type="text">
+		  	    <title xml:lang="ko">동영상 세로크기</title>
+			      <description xml:lang="ko">동영상 세로크기를 입력하세요.</description>
+  		  </var>
+
+	  	  <var name="m_video_width" type="text">
+		  	    <title xml:lang="ko">모바일 동영상 가로크기</title>
+			      <description xml:lang="ko">모바일 동영상 가로크기를 입력하세요.</description>
+  		  </var>
+	  	  <var name="m_video_height" type="text">
+		  	    <title xml:lang="ko">모바일 동영상 세로크기</title>
+			      <description xml:lang="ko">모바일 동영상 세로크기를 입력하세요.</description>
+  		  </var>
+      </group>
+
+
+      <group>
+        <title xml:lang="ko">동영상 문서내 삽입설정</title>
+	  	  <var name="insert_selecter" type="text">
+		  	    <title xml:lang="ko">삽입할 영역 ID 또는 CLASS</title>
+			      <description xml:lang="ko">ID일 경우 '#', CLASS일 경우 '.'를 포함한 이름을 적어주세요. 입력하지 않을 경우 본문에 삽입됩니다. (ex: #contet, .content)</description>
+  		  </var>
+        <var name="insert_position" type="select">
+            <title xml:lang="ko">삽입할 영역의 위치</title>
+            <description xml:lang="ko">삽입할 영역의 위치를 선택해주세요.</description>
+            <options value="prepend">
+                <title xml:lang="ko">게시물 상단</title>
+            </options>
+            <options value="append">
+                <title xml:lang="ko">게시물 하단</title>
+            </options>
+        </var>
+  		</group>
+  	</extra_vars>
+</addon>

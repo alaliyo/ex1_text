@@ -1,0 +1,91 @@
+{Context::set('layout','none')}
+{Context::set('admin_bar','false')}
+<style type="text/css">
+body {
+	margin:0px;
+	padding:0px;
+	overflow:hidden;
+	width:100%;
+	height:100%;
+	background-color:#000;
+}
+</style>
+<load target="js/jwplayer.js" />
+<script>
+jQuery(window).load(function() {
+  var strWidth;
+  var strHeight;
+  //innerWidth / innerHeight / outerWidth / outerHeight 지원 브라우저 
+  if ( window.innerWidth && window.innerHeight && window.outerWidth && window.outerHeight ) {
+    strWidth = jQuery('#videoresize').outerWidth() + (window.outerWidth - window.innerWidth);
+    strHeight = jQuery('#videoresize').outerHeight() + (window.outerHeight - window.innerHeight);
+  }
+  else {
+    var strDocumentWidth = jQuery(document).outerWidth();
+    var strDocumentHeight = jQuery(document).outerHeight();
+    window.resizeTo ( strDocumentWidth, strDocumentHeight );
+    var strMenuWidth = strDocumentWidth - jQuery(window).width();
+    var strMenuHeight = strDocumentHeight - jQuery(window).height();
+    strWidth = jQuery('#videoresize').outerWidth() + strMenuWidth;
+    strHeight = jQuery('#videoresize').outerHeight() + strMenuHeight;
+  }
+  //resize 
+  window.resizeTo( strWidth, strHeight );
+}); 
+</script>
+
+<body>
+<div id="videoresize">
+<!--@if($oDocument->isExtraVarsExists() && (!$oDocument->isSecret() || $oDocument->isGranted()) )-->
+<!--@foreach($oDocument->getExtraVars() as $key => $val)-->
+<!--@if($val->eid=='video')-->
+    {@	$extras	= $val->getValueHTML();}
+		<!--@if(preg_match('/youtu/', $extras))-->
+			<!--@if(preg_match('/list/', $extras))-->
+				{@
+					$video_id = str_replace('https://youtu.be/','',$extras);
+					$video_id = str_replace('https://www.youtube.com/watch?v=','',$video_id);
+					$video_id = str_replace('http://www.youtube.com/watch?v=','',$video_id);	
+					$video_id = explode('&amp;list=',$video_id);
+				}
+				<div class="video-container"><iframe src="//www.youtube.com/embed/{$video_id[0]}?list={$video_id[1]}" frameborder="0" allowfullscreen="true"></iframe></div>
+				<!--@else-->
+				{@
+					$video_id = str_replace('http://youtu.be/','//youtube.com/embed/',$extras);
+					$video_id = str_replace('https://www.youtube.com/watch?v=','//youtube.com/embed/',$video_id);
+					$video_id = str_replace('http://www.youtube.com/watch?v=','//youtube.com/embed/',$video_id);				
+				}
+				<div class="video-container"><iframe src="{$video_id}?version=3&vq=highres&rel=0" frameborder="0" allowfullscreen="true"></iframe></div>
+			<!--@end-->
+		<!--@elseif(preg_match('/vimeo/', $extras))-->
+			{@
+				$video_id = str_replace('https://vimeo.com','//player.vimeo.com/video',$extras);
+			}
+			<div class="video-container"><iframe src="{$video_id}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+		<!--@elseif(preg_match('/ted/', $extras))-->
+			{@
+				$video_id = str_replace('http://www.ted.com','http://embed.ted.com',$extras);
+			}
+			<div class="video-container"><iframe src="{$video_id}" frameborder="0"  scrolling="no" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>	
+		<!--@elseif(preg_match('/drive.google/', $extras))-->
+			{@
+				$video_id = str_replace('drive.google.com/file/d','www.googledrive.com/host',$extras);
+				$video_id = str_replace('/edit?usp=sharing','',$video_id);
+			}
+			<div class="video-container" cond="!Mobile::isMobileCheckByAgent()"><embed src="/modules/board/skins/rest_default/js/player.swf" flashvars="file={$video_id}&type=video" wmode="opaque"></div>
+			<div class="video-container" cond="Mobile::isMobileCheckByAgent()"><iframe src="https://docs.google.com/uc?id=0B1E_R4fVdBTndV9aN0lsbE9WZkE&export=download"></iframe></div>			
+		<!--@else-->
+		<load target="js/jwplayer.js" />
+		<div  style="width:<!--@if($module_info->display_videoplaywidth)-->{$module_info->display_videoplaywidth}<!--@else-->800<!--@end-->px;height:<!--@if($module_info->display_videoplayheight)-->{$module_info->display_videoplayheight}<!--@else-->600<!--@end-->px"><div id="myElement"></div></div>
+			<script>
+				jwplayer("myElement").setup({
+					file: "{$extras}",
+					width: "100%",
+					aspectratio: "4:3",
+				});
+			</script>		
+		<!--@end-->	
+<!--@end-->		
+<!--@end-->
+<!--@end-->	
+</body>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget version="0.2">
+    <title xml:lang="ko">Swiper Slider 위젯</title>
+    <description xml:lang="ko">Rhymix 전용 Swiper Slider 위젯입니다.</description>
+    <version>1.0.1</version>
+    <date>2020-10-15</date>
+	<author email_address="glanceyes@naver.com" link="http://glanceyes.net">
+		<name xml:lang="ko">Glanceyes</name>
+	</author>
+    <extra_vars>
+		<group>
+			<title xml:lang="ko">위젯 사용</title>
+			<var id="identifying_way">
+				<type>select</type>
+				<name xml:lang="ko">슬라이더 위젯 구분</name>
+				<description xml:lang="ko">위젯 캐시 기능을 사용하면 '난수 생성'을, 사용하지 않으면 '세션 사용'을 권장합니다.</description>
+				<options>
+					<value>generate_random_num</value>
+					<name xml:lang="ko">난수 생성</name>
+				</options>
+				<options>
+					<value>use_session</value>
+					<name xml:lang="ko">세션 사용</name>
+				</options>
+			</var>
+		</group>
+        <group>
+            <title xml:lang="ko">추출 및 정렬</title>
+			<var id="module_srls">
+				<type>module_srl_list</type>
+				<name xml:lang="ko">대상 모듈</name>
+			</var>
+			<var id="list_count">
+				<type>text</type>
+				<name xml:lang="ko">게시글 수</name>
+				<description xml:lang="ko">설정한 모듈에서 출력할 게시글 수를 지정해주세요. 기본은 5개입니다.</description>
+			</var>
+			<var id="order_target">
+				<type>select</type>
+				<name xml:lang="ko">정렬 순서</name>
+				<description xml:lang="ko">정렬 순서를 지정할 수 있습니다. 기본은 최신 등록순입니다.</description>
+				<options>
+					<value>list_order</value>
+					<name xml:lang="ko">최신 등록순</name>
+				</options>
+				<options>
+					<value>update_order</value>
+					<name xml:lang="ko">최근 변경순</name>
+				</options>
+				<options>
+					<value>regdate</value>
+					<name xml:lang="ko">등록 일자순</name>
+				</options>
+				<options>
+					<value>rand()</value>
+					<name xml:lang="ko">랜덤순</name>
+				</options>
+			</var>
+			<var id="order_type">
+				<type>select</type>
+				<name xml:lang="ko">정렬 유형</name>
+				<description xml:lang="ko">정렬을 내림차순 또는 올림차순으로 정렬할 수 있습니다. 기본은 내림차순입니다.</description>
+				<options>
+					<value>desc</value>
+					<name xml:lang="ko">내림차순</name>
+				</options>
+				<options>
+					<value>asc</value>
+					<name xml:lang="ko">올림차순</name>
+				</options>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">표시 형태</title>
+			<var id="option_view">
+				<type>select-multi-order</type>
+				<name xml:lang="ko">표시 항목</name>
+				
+				<options default="false" init="true">
+					<value>title</value>
+					<name xml:lang="ko">제목</name>
+				</options>
+				<options default="false" init="true">
+					<value>content</value>
+					<name xml:lang="ko">내용</name>
+				</options>
+				
+			</var>
+			<var id="direction">
+				<type>select</type>
+				<name xml:lang="ko">이전 다음 이동 버튼</name>
+				<description xml:lang="ko">슬라이더에서 현재 슬라이드의 이전 또는 다음으로 이동하는 버튼을 보일 지 결정하세요.</description>
+				<options>
+					<value>true</value>
+					<name xml:lang="ko">보이기</name>
+				</options>
+				<options>
+					<value>false</value>
+					<name xml:lang="ko">보이지 않기</name>
+				</options>
+			</var>
+			<var id="pager">
+				<type>select</type>
+				<name xml:lang="ko">페이징</name>
+				<description xml:lang="ko">슬라이더 하단 부분에 있는 인덱싱 버튼을 보일 지 결정하세요.</description>
+				<options>
+					<value>true</value>
+					<name xml:lang="ko">보이기</name>
+				</options>
+				<options>
+					<value>false</value>
+					<name xml:lang="ko">보이지 않기</name>
+				</options>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">슬라이드 설정</title>
+			<var id="slide_max_width">
+				<type>text</type>
+				<name xml:lang="ko">가로 최대크기</name>
+				<description xml:lang="ko">슬라이더의 가로 최대 값(px)을 지정합니다. 미설정 시 브라우저 화면 또는 parent 영역의 100%를 차지합니다.</description>
+			</var>
+			<var id="slide_height">
+				<type>text</type>
+				<name xml:lang="ko">세로높이</name>
+				<description xml:lang="ko">슬라이더의 세로 높이 값(px)을 지정합니다. 기본 높이는 500px입니다.</description>
+			</var>
+			<var id="pause">
+				<type>text</type>
+				<name xml:lang="ko">이미지 전환시간</name>
+				<description xml:lang="ko">현재 슬라이드에서 다음 슬라이드로 넘어가는 전환 시간(예: 7초)을 입력하세요. 미설정 시 슬라이드가 자동으로 전환되지 않습니다.</description>
+			</var>
+			<var id="ani">
+				<type>select</type>
+				<name xml:lang="ko">애니메이션 효과</name>
+				<description xml:lang="ko"></description>
+				<options>
+					<value>slide</value>
+					<name xml:lang="ko">슬라이드</name>
+				</options>
+				<options>
+					<value>fade</value>
+					<name xml:lang="ko">페이드</name>
+				</options>
+				<options>
+					<value>cube</value>
+					<name xml:lang="ko">큐브</name>
+				</options>
+				<options>
+					<value>coverflow</value>
+					<name xml:lang="ko">커버 플로우</name>
+				</options>
+				<options>
+					<value>flip</value>
+					<name xml:lang="ko">플립</name>
+				</options>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">내용 표시</title>
+			<var id="subject_cut_size">
+				<type>text</type>
+				<name xml:lang="ko">제목 글자수</name>
+				<description xml:lang="ko">슬라이드에 보일 게시글의 제목 최대 길이(글자 수)를 지정합니다. 기본 값은 50 글자입니다.</description>
+			</var>
+			<var id="content_cut_size">
+				<type>text</type>
+				<name xml:lang="ko">내용 글자수</name>
+				<description xml:lang="ko">슬라이드에 보일 게시글의 내용 최대 길이(글자 수)를 지정합니다. 기본 값은 100 글자입니다.</description>
+			</var>
+			<var id="subject_font_size">
+				<type>text</type>
+				<name xml:lang="ko">제목 글자 크기</name>
+				<description xml:lang="ko">제목 글자 크기를 입력합니다. 기본 크기는 60px입니다.</description>
+			</var>
+			<var id="content_font_size">
+				<type>text</type>
+				<name xml:lang="ko">내용 글자 크기</name>
+				<description xml:lang="ko">내용 글자 크기를 입력합니다. 기본 크기는 20px입니다.</description>
+			</var>
+			<var id="content_position">
+				<type>text</type>
+				<name xml:lang="ko">내용 표시 위치</name>
+				<description xml:lang="ko">제목과 내용을 표시할 위치이며, 전체 너비에 대하여 왼쪽으로부터 떨어진 비율(%)입니다. 기본 위치는 전체 여백의 5%만큼 왼쪽에서 떨어져 위치합니다.</description>
+			</var>
+			<var id="content_align">
+				<type>select</type>
+				<name xml:lang="ko">내용 표시 정렬</name>
+				<description xml:lang="ko">제목과 내용의 정렬 방식을 선택합니다. 기본 방식은 왼쪽 정렬입니다.</description>
+				<options>
+					<value>left</value>
+					<name xml:lang="ko">왼쪽</name>
+				</options>
+				<options>
+					<value>center</value>
+					<name xml:lang="ko">가운데</name>
+				</options>
+				<options>
+					<value>right</value>
+					<name xml:lang="ko">오른쪽</name>
+				</options>
+			</var>
+			<var id="thumbnail_type">
+				<type>select</type>
+				<name xml:lang="ko">썸네일 생성 방식</name>
+				<description xml:lang="ko">배경 썸네일을 생성하는 방식을 선택합니다. 기본 방식은 슬라이더 크기에 맞게 자르기(crop)입니다.</description>
+				<options>
+					<value>crop</value>
+					<name xml:lang="ko">자르기</name>
+				</options>
+				<options>
+					<value>ratio</value>
+					<name xml:lang="ko">비율에 맞추기</name>
+				</options>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">링크 클릭 방법</title>
+			<var id="hyperlink_src">
+				<type>select</type>
+				<name xml:lang="ko">클릭 시 링크 이동 대상</name>
+				<description xml:lang="ko">이미지 클릭시 어떤 링크로 이동시킬 것인지 설정할 수 있습니다.</description>
+				<options>
+					<value>article</value>
+					<name xml:lang="ko">게시글</name>
+				</options>
+				<options>
+					<value>extravar</value>
+					<name xml:lang="ko">사용자 정의</name>
+				</options>
+			</var>
+			<var id="hyperlink_extravar">
+				<type>text</type>
+				<name xml:lang="ko">링크 이동 사용자 정의 이름</name>
+				<description xml:lang="ko">링크 주소로 사용될 사용자 정의의 이름을 입력하세요.</description>
+			</var>
+			<var id="hyperlink_target">
+				<type>select</type>
+				<name xml:lang="ko">링크 이동 방식</name>
+				<description xml:lang="ko">이미지 클릭 시 링크를 새 창으로 열지 여부를 설정할 수 있습니다.</description>
+				<options>
+					<value>N</value>
+					<name xml:lang="ko">현재 창에서 이동</name>
+				</options>
+				<options>
+					<value>Y</value>
+					<name xml:lang="ko">새 창으로 열기</name>
+				</options>
+			</var>
+		</group>
+    </extra_vars>
+</widget>

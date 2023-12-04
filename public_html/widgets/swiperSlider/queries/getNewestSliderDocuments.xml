@@ -1,0 +1,18 @@
+<query id="getNewestDocuments" action="select">
+    <tables>
+        <table name="documents" alias="doc" />
+		<table name="document_extra_vars" alias="ext" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="doc.document_srl" default="ext.document_srl" />
+		<condition operation="in" column="doc.module_srl" var="module_srl" filter="number" notnull="notnull" pipe="and" />
+		<condition operation="equal" column="ext.eid" default="slider" pipe="and" />
+		<condition operation="like" column="ext.value" default="%Yes%" pipe="and" />
+    </conditions>
+	<navigation>
+        <index var="sort_index" default="list_order" order="sort_order" />
+    </navigation>
+</query>

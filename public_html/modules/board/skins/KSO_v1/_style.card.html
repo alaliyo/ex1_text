@@ -1,0 +1,255 @@
+<form action="./" method="get" class="boardListForm">
+    <fieldset>
+<table cond="$document_list || $notice_list" class="table table-hover" cond="$module_info->display_listheadset_button == 'Y'">
+	<thead>
+		<!--// 테이블 헤더 -->
+		<tr>
+			<block loop="$list_config=>$key,$val">
+			<th scope="col" cond="$val->type=='no' && $val->idx==-1" class="hidden-xs width70" ><a href="{getUrl('order_type',$order_type)}" title="<!--@if($order_type=="desc")-->{$lang->order_desc}<!--@else-->{$lang->order_asc}<!--@end-->">{$lang->no} <i cond="$sort_index=='no'" class="fa <!--@if($order_type=="desc")-->fa-caret-down<!--@else-->fa-caret-up<!--@end--> fa-fw"></i></a>
+			</th>
+			<block cond="$val->type=='title' && $val->idx==-1">
+			<th scope="col" cond="$module_info->use_category=='Y'" class="hidden-xs width70">{$lang->category}
+			</th>
+			<th scope="col" class="text-center"><a href="{getUrl('sort_index','title','order_type',$order_type)}">{$lang->title} <i cond="$sort_index=='title'" class="fa <!--@if($order_type=="desc")-->fa-caret-down<!--@else-->fa-caret-up<!--@end--> fa-fw"></i></a>
+			</th>
+			</block>
+			<th scope="col" cond="$val->type=='nick_name' && $val->idx==-1" class="hidden-xs tableuser">{$lang->writer}
+			</th>
+			<th scope="col" cond="$val->type=='user_id' && $val->idx==-1" class="hidden-xs tableuser">{$lang->user_id}
+			</th>
+			<th scope="col" cond="$val->type=='user_name' && $val->idx==-1" class="hidden-xs tableuser">{$lang->user_name}
+			</th>
+			<th scope="col" cond="$val->type=='regdate' && $val->idx==-1" class="tabledate"><a href="{getUrl('sort_index','regdate','order_type',$order_type)}">{$lang->date}<i cond="$sort_index=='regdate'" class="fa <!--@if($order_type=="desc")-->fa-caret-down<!--@else-->fa-caret-up<!--@end--> fa-fw"></i></a>
+			</th>
+			<th scope="col" cond="$val->type=='last_update' && $val->idx==-1" class="hidden-xs tabledate"><a href="{getUrl('sort_index','last_update','order_type',$order_type)}">최근수정<i cond="$sort_index=='last_update'" class="fa <!--@if($order_type=="desc")-->fa-caret-down<!--@else-->fa-caret-up<!--@end--> fa-fw"></i></a>
+			</th>
+			<th scope="col" cond="$val->type=='last_post' && $val->idx==-1" class="hidden-xs tabledate">{$lang->last_post}
+			</th>
+			<th scope="col" cond="$val->type=='readed_count' && $val->idx==-1" class="hidden-xs width70"><a href="{getUrl('sort_index','readed_count','order_type',$order_type)}">조회<i cond="$sort_index=='readed_count'" class="fa <!--@if($order_type=="desc")-->fa-caret-down<!--@else-->fa-caret-up<!--@end--> fa-fw"></i></a>
+			</th>
+			<th scope="col" cond="$val->type=='voted_count' && $val->idx==-1" class="hidden-xs width70"><a href="{getUrl('sort_index','voted_count','order_type',$order_type)}">추천<i cond="$sort_index=='voted_count'" class="fa <!--@if($order_type=="desc")-->fa-caret-down<!--@else-->fa-caret-up<!--@end--> fa-fw"></i></a>
+			</th>
+			<th scope="col" cond="$val->type=='blamed_count' && $val->idx==-1" class="hidden-xs width70"><a href="{getUrl('sort_index','blamed_count','order_type',$order_type)}">비추천<i cond="$sort_index=='blamed_count'" class="fa <!--@if($order_type=="desc")-->fa-caret-down<!--@else-->fa-caret-up<!--@end--> fa-fw"></i></a>
+			</th>
+			<!--@if($val->eid=='video')-->
+			<!--@else-->
+			<th scope="col" cond="$val->idx!=-1" class="hidden-xs width70"><a href="{getUrl('sort_index',$val->eid,'order_type',$order_type)}">{$val->name}</a>
+			</th>
+			<!--@end-->			
+			<!--@if($val->eid=='video')-->
+			<th scope="col" cond="$val->idx!=-1" class="hidden-xs width50">{$val->name}
+			</th>			
+			<!--@end-->
+			</block>
+			<th scope="col" cond="$grant->manager" class="width30"><input class="checkbox" type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true });" title="Check All" />
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<!--// Notice -->
+		<tr loop="$notice_list=>$no,$document" class="<!--@if($document->getExtraEidValue('video'))-->info<!--@else-->active<!--@end-->">
+			<block loop="$list_config=>$key,$val">
+			<td cond="$val->type=='no' && $val->idx==-1" class="hidden-xs width70">
+				<block cond="$document_srl==$document->document_srl">&raquo;</block><strong cond="$document_srl!=$document->document_srl">{$lang->notice}</strong>
+			</td>
+			<block cond="$val->type=='title' && $val->idx==-1">
+			<td cond="$module_info->use_category=='Y'" class="hidden-xs width70 nowrap"><strong>{$category_list[$document->get('category_srl')]->title}</strong></td>
+			<td>
+				<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', $listStyle, 'cpage','')}"><strong>{$document->getTitle($module_info->subject_cut_size)}</strong></a>
+				<!--@if($document->getCommentCount())-->
+				 <small><a href="{getUrl('document_srl', $document->document_srl)}#comment">{$document->getCommentCount()}</a></small>
+				<!--@end-->
+				<!--@if($document->getTrackbackCount())-->
+				 <small><a href="{getUrl('document_srl', $document->document_srl)}#trackback">{$document->getTrackbackCount()}</a></small>
+				<!--@end-->
+				&nbsp;
+				<!--@if((int)($document->getRegdate('YmdHis')>date("YmdHis", time()-$module_info->duration_new*60*60)))-->
+				<span class="label label-primary">new</span>
+				<!--@else-->
+				<!--@if((int)(zdate($document->get('last_update'),'YmdHis')>date("YmdHis", time()-$module_info->duration_new*60*60)))-->
+				<span class="label label-success">update</span>
+				<!--@end-->
+				<!--@end-->
+				<block cond="$document->hasUploadedFiles()"><span class="label label-info">File</span></block>
+				<block cond="$document->variables[status]=='SECRET'"><span class="label label-warning">Secret</span></block>
+			</td>
+			</block>
+			<td cond="$val->type=='nick_name' && $val->idx==-1" class="hidden-xs tableuser"><a href="#popup_menu_area" class="member_{$document->get('member_srl')} nocolorlist" onclick="return false" title="{$document->getNickName()}">{$document->getNickName()}</a></td>
+			<td cond="$val->type=='user_id' && $val->idx==-1" class="hidden-xs tableuser">{$document->getUserID()}</td>
+			<td cond="$val->type=='user_name' && $val->idx==-1" class="hidden-xs tableuser">{$document->getUserName()}</td>
+			<td cond="$val->type=='regdate' && $val->idx==-1" class="tabledate">{$document->getRegdate('Y.m.d')}</td>
+			<td cond="$val->type=='last_update' && $val->idx==-1" class="hidden-xs tabledate">{zdate($document->get('last_update'),'Y.m.d')}</td>
+			<td cond="$val->type=='last_post' && $val->idx==-1" class="hidden-xs tabledate">
+				<block cond="(int)($document->get('comment_count'))>0">
+					<a href="{getUrl('document_srl',$document->document_srl)}#{$document->document_srl}_comment" title="{getTimeGap($document->get('last_update'), "H:i")}">{zdate($document->get('last_update'),'Y.m.d')}<small cond="$document->getLastUpdater()">(by {$document->getLastUpdater()})</small></a>
+				</block>
+				<block cond="(int)($document->get('comment_count'))==0">&nbsp;</block>
+			</td>
+			<td cond="$val->type=='readed_count' && $val->idx==-1" class="hidden-xs width70">{$document->get('readed_count')>0?$document->get('readed_count'):'0'}</td>
+			<td cond="$val->type=='voted_count' && $val->idx==-1" class="hidden-xs width70">{$document->get('voted_count')!=0?$document->get('voted_count'):'0'}</td>
+			<td cond="$val->type=='blamed_count' && $val->idx==-1" class="hidden-xs width70">{$document->get('blamed_count')!=0?$document->get('blamed_count'):'0'}</td>
+			<!--@if($val->eid=='video')-->	
+			<!--@else-->
+			<td cond="$val->idx!=-1" class="width70 hidden-xs ">
+				<!--@if($val->eid=='rating')-->
+					<span title="{$document->getExtraValueHTML($val->idx)}{$lang->score}"><span style="width:{$document->getExtraValueHTML($val->idx)*10}%">{$document->getExtraValueHTML($val->idx)}</span></span>
+				<!--@else-->
+				{$document->getExtraValueHTML($val->idx)}
+				<!--@end-->
+			</td>
+			<!--@end-->
+			<!--@if($val->eid=='video')-->
+			<td cond="$val->idx!=-1" class="width50 hidden-xs">
+					<!--@if($document->getExtraValueHTML($val->idx))-->
+					<a href="#" onclick="window.open('{getUrl('document_srl',$document->document_srl,'listStyle','video','page','')}','video','width=<!--@if($module_info->display_videoplaywidth)-->{$module_info->display_videoplaywidth}<!--@else-->800<!--@end-->,height=<!--@if($module_info->display_videoplayheight)-->{$module_info->display_videoplayheight}<!--@else-->600<!--@end-->,resizable=yes');return false">보기</a>
+					<!--@end-->
+			</td>		
+
+			<!--@end-->
+			</block>
+			<td cond="$grant->manager" class="width30"><input class="checkbox" type="checkbox" name="cart" value="{$document->document_srl}" title="Check This Article" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" /></td>
+		</tr>
+	</tbody>	
+</table>
+<div class="clearfix"></div>
+
+<block cond="!$document_srl" > 
+	{@
+		$new_document_srl = reset($document_list)->document_srl;
+		$oDocumentModel = &getModel('document');
+		$oDocument = $oDocumentModel->getDocument($new_document_srl);
+		Context::set('document_srl',$new_document_srl);
+	}
+
+	<include target="./view_document.html" />
+
+	<br />
+	<br />
+	<br />
+
+
+</block>
+
+
+<!--// Normal -->
+<div id="masonry-container" class="row">
+	<div class="<!--@if($module_info->display_thumbnailnum=='two')-->col-lg-6 col-md-6 col-sm-6 col-xs-12 itemBox<!--@elseif($module_info->display_thumbnailnum=='three')-->col-lg-4 col-md-4 col-sm-4 col-xs-12 itemBox<!--@elseif($module_info->display_thumbnailnum=='four')-->col-lg-3 col-md-3 col-sm-3 col-xs-12 itemBox<!--@elseif($module_info->display_thumbnailnum=='six')-->col-lg-2 col-md-2 col-sm-4 col-xs-12 itemBox<!--@else-->col-lg-12 itemBox<!--@end-->" loop="$document_list=>$no,$document">
+		<div class="<!--@if($module_info->display_bgStyle=='Y')-->bgStyle thumbnailover<!--@else-->thumbnailover thumbnail<!--@end--> relative">
+			<a href="{getUrl('document_srl',$document->document_srl,'listStyle',$listStyle, 'cpage','')}">
+			<!--@if($document->thumbnailExists($module_info->thumbnail_width, $module_info->thumbnail_height, $module_info->thumbnail_type))-->
+				<!--@if($document->variables[status]!='SECRET'||$logged_info->is_admin=='Y'||$logged_info->member_srl==$document->variables[member_srl])-->
+				<div class="thumbnailgrow noimgwh">
+					<div class="wrap">
+						<img src="{$document->getThumbnail($module_info->thumbnail_width, $module_info->thumbnail_height, $module_info->thumbnail_type)}" alt=".." class="thumbnailimg">
+					</div>
+				</div>			
+				<!--@else-->
+				<div class="noimgwh">
+					<div class="wrap nothumbfocus"><div class="padding10">비밀글입니다</div></div>
+				</div>
+				<!--@end-->
+			<!--@elseif($document->getExtraEidValue('video'))-->
+				{@	$extras	= $document->getExtraEidValue('video');}
+					<!--@if(preg_match('/youtu/', $extras))-->
+						<!--@if(preg_match('/list/', $extras))-->
+							{@
+								$video_id = explode('v=',$extras);
+								$youtu_id = explode('&',$video_id[1]);
+							}
+								<div class="thumbnailgrow noimgwh"><div class="wrap">
+								<img src="http://img.youtube.com/vi/{$youtu_id[0]}/0.jpg" class="thumbnailimg"/></div></div>
+							<!--@elseif(preg_match('/youtu.be/', $extras))-->
+							{@
+								$youtu_id = str_replace('http://youtu.be/','',$extras);
+							}
+								<div class="thumbnailgrow noimgwh"><div class="wrap">
+								<img src="http://img.youtube.com/vi/{$youtu_id}/0.jpg" class="thumbnailimg"/></div></div>
+							<!--@else-->
+							{@
+								$video_id = explode('v=',$extras);
+								$youtu_id = explode('&',$video_id[1]);
+								$youtube_id = explode('?',$youtu_id[0]);
+							}							
+								<div class="thumbnailgrow noimgwh"><div class="wrap">
+								<img src="http://img.youtube.com/vi/{$youtube_id[0]}/0.jpg" class="thumbnailimg"/></div></div>
+							<!--@end-->					
+					<!--@elseif(preg_match('/vimeo/', $extras))-->
+						{@
+							$thumbnail_id = str_replace('https://vimeo.com/','',$extras);
+						}
+						<script>	
+						//<!--<![CDATA[ 
+						jQuery(function(){ 
+							jQuery("#vimeothumbnail .vimeothumb").each(function(index){ 
+							var thumbnail_id = jQuery(this).attr("id"); 
+							jQuery.getJSON('https://www.vimeo.com/api/v2/video/' + thumbnail_id + '.json?callback=?', {format: "json"}, function(data) { 
+								jQuery("#"+thumbnail_id).attr('src', data[0].thumbnail_medium); 
+								}); 
+						  
+							}); 
+						}); 
+						//]]>--> 
+						</script>
+						<div class="thumbnailgrow noimgwh"><div class="wrap" id="vimeothumbnail">
+							<img id="{$thumbnail_id}" class="vimeothumb thumbnailimg"/>
+						</div></div>
+					<!--@else-->
+						<div class="noimgwh"><div class="wrap nothumbfocus"></div></div>
+					<!--@end-->
+			<!--@else-->
+				<div class="noimgwh"><div class="wrap nothumbfocus"></div></div>
+			<!--@end-->
+			</a>	
+			<div class="caption">
+				<a href="{getUrl('document_srl',$document->document_srl, 'listStyle', 'list', 'cpage','')}">
+					<h4 cond="$list_config['title']">{$document->getTitle($module_info->subject_cut_size)} <small cond="$document->getCommentCount()"><a href="{getUrl('document_srl', $document->document_srl)}#comment">({$document->getCommentCount()})</a></small></h4>					
+				</a>				
+				<p class="cardinfoname nocolor">
+					<block cond="$module_info->use_category=='Y'">{$category_list[$document->get('category_srl')]->title} &nbsp;</block>
+					<block cond="$list_config['regdate']">{$document->getRegdate("Y.m.d")} &nbsp;</block>
+					<block cond="$list_config['nick_name']">{$document->getNickName()} &nbsp;</block>
+					<block cond="$list_config['userID ']">{$document->getUserID()} &nbsp;</block>
+					<block cond="$list_config['username']">{$document->getUserName()} &nbsp;</block>
+					<block cond="$list_config['readed_count']"> {$document->get('readed_count')>0?$document->get('readed_count'):'0'} Readed&nbsp;</block>
+				</p>
+				<p class="content" cond="$list_config['summary']">{$document->getSummary($module_info->content_cut_size)}</p>
+				<p cond="$list_config['readed_count']||$list_config['voted_count']" class="nocolor">
+					<block cond="$list_config['comment_status']&&$document->getCommentCount()">댓글 <a href="{getUrl('document_srl', $document->document_srl)}#comment">{$document->getCommentCount()}</a> &nbsp;</block>		
+				</p>
+				<!--@if($val->eid=='video')-->
+					<!--@if($document->getExtraValueHTML($val->idx))-->
+				<div cond="$val->idx!=-1" class="cardextra">
+						<a href="#" onclick="window.open('{getUrl('document_srl',$document->document_srl,'listStyle','video','page','')}','video','width=<!--@if($module_info->display_videoplaywidth)-->{$module_info->display_videoplaywidth}<!--@else-->800<!--@end-->,height=<!--@if($module_info->display_videoplayheight)-->{$module_info->display_videoplayheight}<!--@else-->600<!--@end-->,resizable=yes');return false" class="btn btn-primary btn-xs"><i class="fa fa-video-camera fa-fw"></i> 보기</a>	
+					<!--@else-->
+					<!--@end-->
+				</div>			
+				<!--@end-->					
+			</div>	
+			<div cond="$grant->manager" class="rcheckbox">
+				<input cond="$grant->manager" class="checkbox" type="checkbox" name="cart" value="{$document->document_srl}" title="Check this" onclick="doAddDocumentCart(this)" checked="checked"|cond="$document->isCarted()" />
+			</div>
+			<div class="ribonicon">
+				<!--@if((int)($document->getRegdate('YmdHis')>date("YmdHis", time()-$module_info->duration_new*60*60)))-->
+				<span class="label label-primary">new</span>
+				<!--@elseif((int)(zdate($document->get('last_update'),'YmdHis')>date("YmdHis", time()-$module_info->duration_new*60*60)))-->
+				<span class="label label-success">update</span>					
+				<!--@elseif($document->variables[status]=='SECRET')-->
+				<span class="label label-success">secret</span>				
+				<!--@end-->	
+			</div>		
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+</fieldset>
+</form>
+<div class="division-line mBottom20"></div>
+
+<script>
+var container = document.querySelector('#masonry-container');
+var msnry = new Masonry( container, {
+  // options...
+  itemSelector: '.itemBox',
+  columnWidth: 0
+});
+</script>

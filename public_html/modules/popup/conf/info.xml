@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+    <title xml:lang="ko">팝업 관리</title>
+    <title xml:lang="en">Popup Manage</title>
+    <description xml:lang="ko">사이트에서 팝업 출력을 위한 내용을 생성/관리하는 모듈입니다. (XESCHOOL - Tested in XE Core Ver.1.7.3.4) (원개발자 zirho zirho6@gmail.com http://www.zirho.co.kr)</description>
+    <description xml:lang="en">Output from the pop-up information for the site creation / management is a module.</description>
+    <version>1.7.3.4</version>
+    <date>2013-05-23</date>
+    <category>service</category>
+
+    <author email_address="xeschool@gmail.com" link="http://www.xeschool.com">
+        <name xml:lang="ko">XE스쿨</name>
+        <name xml:lang="en">XESCHOOL</name>
+    </author>
+</module>

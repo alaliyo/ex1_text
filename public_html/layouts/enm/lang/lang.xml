@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<item name="user_manager">
+		<value xml:lang="ko"><![CDATA[회원 정보]]></value>
+		<value xml:lang="en"><![CDATA[Member Settings]]></value>
+	</item>
+	<item name="lang_admin">
+		<value xml:lang="ko"><![CDATA[관리자]]></value>
+		<value xml:lang="en"><![CDATA[ADMIN]]></value>
+	</item>
+	<item name="lang_search_here">
+		<value xml:lang="ko"><![CDATA[검색은 여기에]]></value>
+		<value xml:lang="en"><![CDATA[Search here]]></value>
+	</item>
+	<item name="lang_readmore">
+		<value xml:lang="ko"><![CDATA[내용 보기]]></value>
+		<value xml:lang="en"><![CDATA[Read More]]></value>
+	</item>
+</lang>
+
